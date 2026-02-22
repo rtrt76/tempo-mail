@@ -1,0 +1,15 @@
+# Node modules
+node_modules/
+
+# Cloudflare worker (separate deployment)
+github-worker/
+
+# Deploy folder (old)
+deploy/
+
+# System files
+.DS_Store
+Thumbs.db
+
+# Gemini
+.gemini/

@@ -1,0 +1,4244 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description"
+        content="تيمبو - خدمة البريد الإلكتروني المؤقت الأسرع والأكثر أماناً. احمِ خصوصيتك من البريد المزعج والتسجيلات غير المرغوب فيها.">
+    <meta name="keywords"
+        content="بريد مؤقت, بريد إلكتروني مؤقت, حماية الخصوصية, بريد مزعج, temp mail, temporary email, sarab mail">
+    <title>تيمبو | Tempo - بريدك المؤقت السريع والآمن</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Arabic:wght@300;400;600;700&display=swap"
+        rel="stylesheet">
+    <style>
+        /* =============================================
+   CSS DESIGN SYSTEM — مؤقت | TempMail
+   Full Functional App + GitHub Auth
+   ============================================= */
+
+        :root {
+            --color-primary: #5CB85C;
+            --color-primary-hover: #4CAF4C;
+            --color-primary-active: #449D44;
+            --color-primary-light: rgba(92, 184, 92, 0.1);
+            --color-primary-lighter: rgba(92, 184, 92, 0.06);
+            --color-primary-glow: rgba(92, 184, 92, 0.25);
+            --color-bg: #FAFBFC;
+            --color-surface: #FFFFFF;
+            --color-surface-elevated: #FFFFFF;
+            --color-border: #E8ECF0;
+            --color-border-light: #F0F2F5;
+            --color-text-primary: #1A1D21;
+            --color-text-secondary: #5A6170;
+            --color-text-tertiary: #8B95A5;
+            --color-text-inverse: #FFFFFF;
+            --color-error: #E74C3C;
+            --color-error-light: rgba(231, 76, 60, 0.1);
+            --color-warning: #F39C12;
+            --color-warning-light: rgba(243, 156, 18, 0.1);
+            --color-github: #24292e;
+            --color-github-hover: #2f363d;
+            --shadow-xs: 0 1px 2px rgba(0, 0, 0, 0.04);
+            --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.06);
+            --shadow-md: 0 4px 16px rgba(0, 0, 0, 0.08);
+            --shadow-lg: 0 8px 32px rgba(0, 0, 0, 0.10);
+            --shadow-xl: 0 16px 48px rgba(0, 0, 0, 0.12);
+            --shadow-card: 0 4px 24px rgba(0, 0, 0, 0.06), 0 1px 4px rgba(0, 0, 0, 0.04);
+            --shadow-card-hover: 0 8px 40px rgba(0, 0, 0, 0.10), 0 2px 8px rgba(0, 0, 0, 0.06);
+            --shadow-email-card: 0 8px 40px rgba(0, 0, 0, 0.08), 0 2px 8px rgba(0, 0, 0, 0.04);
+            --shadow-primary: 0 4px 16px rgba(92, 184, 92, 0.35);
+            --shadow-modal: 0 24px 80px rgba(0, 0, 0, 0.18), 0 4px 16px rgba(0, 0, 0, 0.08);
+            --radius-sm: 8px;
+            --radius-md: 12px;
+            --radius-lg: 16px;
+            --radius-xl: 20px;
+            --radius-2xl: 24px;
+            --radius-full: 9999px;
+            --font-family: 'IBM Plex Sans Arabic', sans-serif;
+            --fs-xs: 0.75rem;
+            --fs-sm: 0.875rem;
+            --fs-base: 1rem;
+            --fs-md: 1.125rem;
+            --fs-lg: 1.25rem;
+            --fs-xl: 1.5rem;
+            --fs-2xl: 2rem;
+            --fs-3xl: 2.5rem;
+            --fs-4xl: 3.25rem;
+            --space-xs: 0.25rem;
+            --space-sm: 0.5rem;
+            --space-md: 1rem;
+            --space-lg: 1.5rem;
+            --space-xl: 2rem;
+            --space-2xl: 3rem;
+            --space-3xl: 4rem;
+            --space-4xl: 6rem;
+            --transition-fast: 150ms cubic-bezier(0.4, 0, 0.2, 1);
+            --transition-base: 250ms cubic-bezier(0.4, 0, 0.2, 1);
+            --transition-slow: 400ms cubic-bezier(0.4, 0, 0.2, 1);
+            --transition-spring: 500ms cubic-bezier(0.34, 1.56, 0.64, 1);
+            --header-height: 72px;
+            --container-max: 1120px;
+        }
+
+        *,
+        *::before,
+        *::after {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box
+        }
+
+        html {
+            scroll-behavior: smooth;
+            -webkit-text-size-adjust: 100%;
+            scroll-padding-top: var(--header-height)
+        }
+
+        body {
+            font-family: var(--font-family);
+            font-size: var(--fs-base);
+            font-weight: 400;
+            line-height: 1.7;
+            color: var(--color-text-primary);
+            background-color: var(--color-bg);
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+            overflow-x: hidden
+        }
+
+        img {
+            max-width: 100%;
+            display: block
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+            transition: color var(--transition-fast)
+        }
+
+        button {
+            font-family: inherit;
+            cursor: pointer;
+            border: none;
+            background: none;
+            font-size: inherit
+        }
+
+        input {
+            font-family: inherit;
+            border: none;
+            outline: none;
+            background: none
+        }
+
+        .container {
+            width: 100%;
+            max-width: var(--container-max);
+            margin: 0 auto;
+            padding: 0 var(--space-xl)
+        }
+
+        .reveal-element {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.7s cubic-bezier(0.4, 0, 0.2, 1), transform 0.7s cubic-bezier(0.4, 0, 0.2, 1)
+        }
+
+        .reveal-element.revealed {
+            opacity: 1;
+            transform: translateY(0)
+        }
+
+        /* ===== HEADER ===== */
+        .header {
+            position: fixed;
+            top: 0;
+            right: 0;
+            left: 0;
+            z-index: 1000;
+            height: var(--header-height);
+            background: rgba(250, 251, 252, 0.75);
+            backdrop-filter: blur(20px) saturate(180%);
+            -webkit-backdrop-filter: blur(20px) saturate(180%);
+            border-bottom: 1px solid var(--color-border-light);
+            transition: background var(--transition-base), box-shadow var(--transition-base)
+        }
+
+        .header.scrolled {
+            background: rgba(255, 255, 255, 0.92);
+            box-shadow: var(--shadow-sm)
+        }
+
+        .header__inner {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            height: 100%
+        }
+
+        .header__logo {
+            display: flex;
+            align-items: center;
+            gap: var(--space-sm);
+            font-size: var(--fs-lg);
+            font-weight: 700;
+            color: var(--color-text-primary)
+        }
+
+        .header__logo svg {
+            color: var(--color-primary)
+        }
+
+        .header__logo-divider {
+            color: var(--color-text-tertiary);
+            font-weight: 300;
+            margin: 0 2px
+        }
+
+        .header__nav {
+            display: flex;
+            align-items: center;
+            gap: var(--space-2xl)
+        }
+
+        .header__nav-link {
+            position: relative;
+            font-size: var(--fs-sm);
+            font-weight: 500;
+            color: var(--color-text-secondary);
+            padding: var(--space-xs) 0;
+            transition: color var(--transition-fast)
+        }
+
+        .header__nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: -2px;
+            right: 0;
+            width: 0;
+            height: 2px;
+            background: var(--color-primary);
+            border-radius: var(--radius-full);
+            transition: width var(--transition-base)
+        }
+
+        .header__nav-link:hover {
+            color: var(--color-primary)
+        }
+
+        .header__nav-link:hover::after {
+            width: 100%
+        }
+
+        .header__actions {
+            display: flex;
+            align-items: center;
+            gap: var(--space-md)
+        }
+
+        .header__menu-btn {
+            display: none;
+            padding: var(--space-sm);
+            color: var(--color-text-primary);
+            border-radius: var(--radius-sm);
+            transition: background var(--transition-fast)
+        }
+
+        .header__menu-btn:hover {
+            background: var(--color-primary-light)
+        }
+
+        /* ===== GITHUB LOGIN BTN (Header) ===== */
+        .btn--github {
+            display: inline-flex;
+            align-items: center;
+            gap: var(--space-sm);
+            padding: 8px 16px;
+            background: var(--color-github);
+            color: white;
+            border-radius: var(--radius-md);
+            font-size: var(--fs-sm);
+            font-weight: 600;
+            transition: all var(--transition-fast);
+            box-shadow: var(--shadow-xs)
+        }
+
+        .btn--github:hover {
+            background: var(--color-github-hover);
+            box-shadow: var(--shadow-sm);
+            transform: translateY(-1px)
+        }
+
+        .btn--github:active {
+            transform: scale(0.97)
+        }
+
+        .header__login-btn.logged-in {
+            background: transparent;
+            color: var(--color-text-primary);
+            box-shadow: none;
+            padding: 4px;
+            border-radius: 50%;
+            overflow: hidden
+        }
+
+        .header__login-btn.logged-in img {
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            border: 2px solid var(--color-primary)
+        }
+
+        /* ===== AUTH MODAL ===== */
+        .auth-overlay {
+            position: fixed;
+            inset: 0;
+            background: rgba(0, 0, 0, 0.5);
+            backdrop-filter: blur(6px);
+            -webkit-backdrop-filter: blur(6px);
+            z-index: 2000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: var(--space-xl);
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity var(--transition-base)
+        }
+
+        .auth-overlay.active {
+            opacity: 1;
+            pointer-events: auto
+        }
+
+        .auth-modal {
+            width: 100%;
+            max-width: 420px;
+            background: var(--color-surface);
+            border-radius: var(--radius-xl);
+            box-shadow: var(--shadow-modal);
+            padding: var(--space-2xl);
+            text-align: center;
+            transform: scale(0.92) translateY(20px);
+            transition: transform var(--transition-spring);
+            position: relative
+        }
+
+        .auth-overlay.active .auth-modal {
+            transform: scale(1) translateY(0)
+        }
+
+        .auth-modal__close {
+            position: absolute;
+            top: 16px;
+            left: 16px;
+            width: 36px;
+            height: 36px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: var(--radius-sm);
+            color: var(--color-text-tertiary);
+            transition: all var(--transition-fast)
+        }
+
+        .auth-modal__close:hover {
+            background: var(--color-error-light);
+            color: var(--color-error)
+        }
+
+        .auth-modal__icon {
+            margin: 0 auto var(--space-lg);
+            color: var(--color-github)
+        }
+
+        .auth-modal__title {
+            font-size: var(--fs-xl);
+            font-weight: 700;
+            color: var(--color-text-primary);
+            margin-bottom: var(--space-sm)
+        }
+
+        .auth-modal__desc {
+            font-size: var(--fs-sm);
+            color: var(--color-text-secondary);
+            line-height: 1.8;
+            margin-bottom: var(--space-xl)
+        }
+
+        .btn--github-auth {
+            width: 100%;
+            padding: 14px;
+            font-size: var(--fs-base);
+            background: var(--color-github);
+            color: white;
+            border-radius: var(--radius-md);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: var(--space-sm);
+            font-weight: 700;
+            transition: all var(--transition-fast);
+            box-shadow: 0 4px 16px rgba(36, 41, 46, 0.3)
+        }
+
+        .btn--github-auth:hover {
+            background: var(--color-github-hover);
+            box-shadow: 0 6px 24px rgba(36, 41, 46, 0.4);
+            transform: translateY(-2px)
+        }
+
+        .btn--github-auth:active {
+            transform: scale(0.97)
+        }
+
+        .auth-modal__divider {
+            margin: var(--space-xl) 0;
+            display: flex;
+            align-items: center;
+            gap: var(--space-md);
+            color: var(--color-text-tertiary);
+            font-size: var(--fs-xs)
+        }
+
+        .auth-modal__divider::before,
+        .auth-modal__divider::after {
+            content: '';
+            flex: 1;
+            height: 1px;
+            background: var(--color-border)
+        }
+
+        .auth-modal__guest-text {
+            font-size: var(--fs-sm);
+            color: var(--color-text-secondary);
+            margin-bottom: var(--space-md)
+        }
+
+        .auth-modal__guest-btn {
+            width: 100%;
+            padding: 12px
+        }
+
+        .auth-modal__features {
+            margin-top: var(--space-xl);
+            padding-top: var(--space-lg);
+            border-top: 1px solid var(--color-border-light);
+            display: flex;
+            flex-direction: column;
+            gap: var(--space-sm);
+            text-align: right
+        }
+
+        .auth-modal__feature {
+            display: flex;
+            align-items: center;
+            gap: var(--space-sm);
+            font-size: var(--fs-xs);
+            color: var(--color-text-secondary)
+        }
+
+        /* ===== USER PROFILE DROPDOWN ===== */
+        .user-profile-dropdown {
+            position: fixed;
+            top: calc(var(--header-height) + 8px);
+            left: var(--space-xl);
+            width: 240px;
+            background: var(--color-surface);
+            border: 1px solid var(--color-border-light);
+            border-radius: var(--radius-lg);
+            box-shadow: var(--shadow-lg);
+            z-index: 1001;
+            padding: var(--space-md);
+            animation: fadeInDown 0.2s ease
+        }
+
+        @keyframes fadeInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-8px)
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0)
+            }
+        }
+
+        .user-profile-dropdown__header {
+            display: flex;
+            align-items: center;
+            gap: var(--space-md);
+            padding-bottom: var(--space-md)
+        }
+
+        .user-profile-dropdown__avatar {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            border: 2px solid var(--color-primary)
+        }
+
+        .user-profile-dropdown__name {
+            font-size: var(--fs-sm);
+            font-weight: 700;
+            color: var(--color-text-primary)
+        }
+
+        .user-profile-dropdown__handle {
+            font-size: var(--fs-xs);
+            color: var(--color-text-tertiary);
+            direction: ltr;
+            text-align: left
+        }
+
+        .user-profile-dropdown__divider {
+            height: 1px;
+            background: var(--color-border-light);
+            margin-bottom: var(--space-md)
+        }
+
+        .user-profile-dropdown__action {
+            display: flex;
+            align-items: center;
+            gap: var(--space-sm);
+            width: 100%;
+            padding: var(--space-sm) var(--space-md);
+            font-size: var(--fs-sm);
+            color: var(--color-error);
+            border-radius: var(--radius-sm);
+            transition: background var(--transition-fast)
+        }
+
+        .user-profile-dropdown__action:hover {
+            background: var(--color-error-light)
+        }
+
+        /* ===== HERO ===== */
+        .hero {
+            position: relative;
+            padding: calc(var(--header-height) + var(--space-3xl)) 0 var(--space-3xl);
+            overflow: hidden
+        }
+
+        .hero__inner {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            gap: var(--space-2xl);
+            position: relative;
+            z-index: 2
+        }
+
+        .hero__content {
+            max-width: 680px
+        }
+
+        .hero__title {
+            font-size: var(--fs-4xl);
+            font-weight: 700;
+            line-height: 1.25;
+            color: var(--color-text-primary);
+            margin-bottom: var(--space-lg);
+            letter-spacing: -0.02em
+        }
+
+        .hero__title-highlight {
+            display: block;
+            color: var(--color-primary)
+        }
+
+        .hero__subtitle {
+            font-size: var(--fs-md);
+            font-weight: 400;
+            color: var(--color-text-secondary);
+            line-height: 1.8;
+            max-width: 560px;
+            margin: 0 auto
+        }
+
+        .hero__bg-decoration {
+            position: absolute;
+            inset: 0;
+            z-index: 1;
+            pointer-events: none;
+            overflow: hidden
+        }
+
+        .hero__bg-circle {
+            position: absolute;
+            border-radius: 50%;
+            opacity: 0.5
+        }
+
+        .hero__bg-circle--1 {
+            width: 500px;
+            height: 500px;
+            background: radial-gradient(circle, var(--color-primary-light) 0%, transparent 70%);
+            top: -100px;
+            left: -150px;
+            animation: floatCircle 20s ease-in-out infinite
+        }
+
+        .hero__bg-circle--2 {
+            width: 400px;
+            height: 400px;
+            background: radial-gradient(circle, rgba(92, 184, 92, 0.06) 0%, transparent 70%);
+            bottom: -80px;
+            right: -100px;
+            animation: floatCircle 25s ease-in-out infinite reverse
+        }
+
+        .hero__bg-circle--3 {
+            width: 250px;
+            height: 250px;
+            background: radial-gradient(circle, rgba(92, 184, 92, 0.08) 0%, transparent 70%);
+            top: 30%;
+            right: 10%;
+            animation: floatCircle 15s ease-in-out infinite 5s
+        }
+
+        @keyframes floatCircle {
+
+            0%,
+            100% {
+                transform: translate(0, 0) scale(1)
+            }
+
+            33% {
+                transform: translate(20px, -30px) scale(1.05)
+            }
+
+            66% {
+                transform: translate(-15px, 20px) scale(0.95)
+            }
+        }
+
+        /* ===== EMAIL CARD ===== */
+        .email-card {
+            width: 100%;
+            max-width: 540px;
+            background: var(--color-surface-elevated);
+            border-radius: var(--radius-xl);
+            padding: var(--space-2xl);
+            box-shadow: var(--shadow-email-card);
+            border: 1px solid var(--color-border-light);
+            display: flex;
+            flex-direction: column;
+            gap: var(--space-lg);
+            position: relative
+        }
+
+        .email-card__badge {
+            display: inline-flex;
+            align-items: center;
+            gap: var(--space-sm);
+            font-size: var(--fs-xs);
+            font-weight: 600;
+            color: var(--color-primary);
+            background: var(--color-primary-light);
+            padding: 6px 14px;
+            border-radius: var(--radius-full);
+            align-self: center;
+            transition: all var(--transition-base)
+        }
+
+        .email-card__badge.loading {
+            color: var(--color-warning);
+            background: var(--color-warning-light)
+        }
+
+        .email-card__badge.error {
+            color: var(--color-error);
+            background: var(--color-error-light)
+        }
+
+        .email-card__input-row {
+            display: flex;
+            gap: var(--space-md);
+            align-items: stretch
+        }
+
+        .email-card__input-wrapper {
+            flex: 1;
+            display: flex;
+            align-items: center;
+            gap: var(--space-sm);
+            background: var(--color-bg);
+            border: 2px solid var(--color-border);
+            border-radius: var(--radius-md);
+            padding: 0 var(--space-lg);
+            position: relative;
+            transition: border-color var(--transition-fast), box-shadow var(--transition-fast)
+        }
+
+        .email-card__input-wrapper:focus-within {
+            border-color: var(--color-primary);
+            box-shadow: 0 0 0 4px var(--color-primary-glow)
+        }
+
+        .email-card__input-icon {
+            color: var(--color-text-tertiary);
+            flex-shrink: 0
+        }
+
+        .email-card__input {
+            width: 100%;
+            padding: var(--space-md) var(--space-sm);
+            font-size: var(--fs-base);
+            font-weight: 600;
+            color: var(--color-text-primary);
+            direction: ltr;
+            text-align: left;
+            letter-spacing: 0.02em;
+            cursor: default
+        }
+
+        .email-card__input::selection {
+            background: var(--color-primary-glow)
+        }
+
+        .email-card__loading-dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: var(--color-primary);
+            flex-shrink: 0;
+            display: none;
+            animation: pulse-dot 1.2s ease-in-out infinite
+        }
+
+        .email-card__loading-dot.active {
+            display: block
+        }
+
+        @keyframes pulse-dot {
+
+            0%,
+            100% {
+                opacity: 1;
+                transform: scale(1)
+            }
+
+            50% {
+                opacity: 0.3;
+                transform: scale(0.7)
+            }
+        }
+
+        .email-card__footer {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding-top: var(--space-sm);
+            border-top: 1px solid var(--color-border-light);
+            gap: var(--space-md)
+        }
+
+        .email-card__poll-status {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            font-size: var(--fs-xs);
+            color: var(--color-text-tertiary)
+        }
+
+        .poll-dot {
+            width: 6px;
+            height: 6px;
+            border-radius: 50%;
+            background: var(--color-primary);
+            animation: pulse-dot 2s ease-in-out infinite
+        }
+
+        /* ===== BUTTONS ===== */
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: var(--space-sm);
+            font-weight: 600;
+            font-size: var(--fs-sm);
+            border-radius: var(--radius-md);
+            padding: var(--space-md) var(--space-xl);
+            transition: all var(--transition-fast);
+            white-space: nowrap;
+            user-select: none;
+            position: relative;
+            overflow: hidden
+        }
+
+        .btn:disabled {
+            opacity: 0.5;
+            cursor: not-allowed
+        }
+
+        .btn--primary {
+            background: var(--color-primary);
+            color: var(--color-text-inverse);
+            box-shadow: var(--shadow-primary)
+        }
+
+        .btn--primary:hover:not(:disabled) {
+            background: var(--color-primary-hover);
+            box-shadow: 0 6px 24px rgba(92, 184, 92, 0.4);
+            transform: translateY(-1px)
+        }
+
+        .btn--primary:active:not(:disabled) {
+            background: var(--color-primary-active);
+            transform: scale(0.97)
+        }
+
+        .btn--secondary {
+            background: var(--color-primary-light);
+            color: var(--color-primary);
+            border: 1.5px solid transparent
+        }
+
+        .btn--secondary:hover:not(:disabled) {
+            background: rgba(92, 184, 92, 0.15);
+            border-color: var(--color-primary);
+            transform: translateY(-1px)
+        }
+
+        .btn--secondary:active:not(:disabled) {
+            transform: scale(0.97)
+        }
+
+        .email-card__copy-btn {
+            padding: var(--space-md) var(--space-xl);
+            font-size: var(--fs-base);
+            min-width: 100px
+        }
+
+        .email-card__copy-btn.copied {
+            background: var(--color-primary-active)
+        }
+
+        .email-card__refresh-btn {
+            align-self: center;
+            padding: 10px var(--space-xl)
+        }
+
+        .email-card__timer {
+            display: flex;
+            align-items: center;
+            gap: var(--space-sm);
+            font-size: var(--fs-xs);
+            color: var(--color-text-tertiary)
+        }
+
+        .email-card__timer strong {
+            color: var(--color-primary);
+            font-weight: 700;
+            font-variant-numeric: tabular-nums;
+            direction: ltr;
+            unicode-bidi: isolate
+        }
+
+        /* ===== SECTION HEADER ===== */
+        .section-header {
+            text-align: center;
+            margin-bottom: var(--space-3xl)
+        }
+
+        .section-header__badge {
+            display: inline-block;
+            font-size: var(--fs-xs);
+            font-weight: 600;
+            color: var(--color-primary);
+            background: var(--color-primary-light);
+            padding: 6px 18px;
+            border-radius: var(--radius-full);
+            margin-bottom: var(--space-lg);
+            letter-spacing: 0.02em
+        }
+
+        .section-header__title {
+            font-size: var(--fs-3xl);
+            font-weight: 700;
+            color: var(--color-text-primary);
+            margin-bottom: var(--space-md);
+            letter-spacing: -0.01em
+        }
+
+        .section-header__subtitle {
+            font-size: var(--fs-md);
+            color: var(--color-text-secondary);
+            max-width: 520px;
+            margin: 0 auto;
+            line-height: 1.8
+        }
+
+        /* ===== INBOX SECTION ===== */
+        .inbox-section {
+            padding: 0 0 var(--space-4xl)
+        }
+
+        .inbox-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: var(--space-xl);
+            padding-bottom: var(--space-lg);
+            border-bottom: 2px solid var(--color-border-light)
+        }
+
+        .inbox-header__right {
+            display: flex;
+            align-items: center;
+            gap: var(--space-lg)
+        }
+
+        .inbox-header__title {
+            display: flex;
+            align-items: center;
+            gap: var(--space-sm);
+            font-size: var(--fs-xl);
+            font-weight: 700;
+            color: var(--color-text-primary)
+        }
+
+        .inbox-header__title svg {
+            color: var(--color-primary)
+        }
+
+        .inbox-header__count {
+            font-size: var(--fs-xs);
+            font-weight: 600;
+            color: var(--color-primary);
+            background: var(--color-primary-light);
+            padding: 4px 12px;
+            border-radius: var(--radius-full)
+        }
+
+        .inbox-header__refresh-btn {
+            padding: 8px 16px;
+            font-size: var(--fs-xs)
+        }
+
+        .inbox-content {
+            min-height: 200px
+        }
+
+        /* Empty State */
+        .inbox-empty {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: var(--space-4xl) var(--space-xl);
+            background: var(--color-surface);
+            border: 2px dashed var(--color-border);
+            border-radius: var(--radius-xl)
+        }
+
+        .inbox-empty__radar {
+            position: relative;
+            width: 120px;
+            height: 120px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: var(--space-xl)
+        }
+
+        .inbox-empty__radar-ring {
+            position: absolute;
+            border-radius: 50%;
+            border: 2px solid var(--color-primary);
+            opacity: 0;
+            animation: radar-pulse 3s ease-out infinite
+        }
+
+        .inbox-empty__radar-ring--1 {
+            width: 60px;
+            height: 60px;
+            animation-delay: 0s
+        }
+
+        .inbox-empty__radar-ring--2 {
+            width: 90px;
+            height: 90px;
+            animation-delay: 1s
+        }
+
+        .inbox-empty__radar-ring--3 {
+            width: 120px;
+            height: 120px;
+            animation-delay: 2s
+        }
+
+        @keyframes radar-pulse {
+            0% {
+                opacity: 0.6;
+                transform: scale(0.5)
+            }
+
+            100% {
+                opacity: 0;
+                transform: scale(1)
+            }
+        }
+
+        .inbox-empty__radar-center {
+            position: relative;
+            z-index: 2;
+            width: 56px;
+            height: 56px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: var(--color-primary-light);
+            border-radius: 50%;
+            color: var(--color-primary)
+        }
+
+        .inbox-empty__title {
+            font-size: var(--fs-lg);
+            font-weight: 700;
+            color: var(--color-text-primary);
+            margin-bottom: var(--space-sm)
+        }
+
+        .inbox-empty__description {
+            font-size: var(--fs-sm);
+            color: var(--color-text-secondary);
+            max-width: 400px;
+            line-height: 1.8
+        }
+
+        /* Error State */
+        .inbox-error {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: var(--space-3xl) var(--space-xl);
+            background: var(--color-error-light);
+            border: 2px dashed var(--color-error);
+            border-radius: var(--radius-xl);
+            color: var(--color-error)
+        }
+
+        .inbox-error__title {
+            font-size: var(--fs-lg);
+            font-weight: 700;
+            margin-top: var(--space-md);
+            margin-bottom: var(--space-sm)
+        }
+
+        .inbox-error__description {
+            font-size: var(--fs-sm);
+            opacity: 0.8
+        }
+
+        /* Inbox List */
+        .inbox-list {
+            display: flex;
+            flex-direction: column;
+            gap: var(--space-md)
+        }
+
+        .inbox-item {
+            display: flex;
+            align-items: center;
+            gap: var(--space-lg);
+            padding: var(--space-lg) var(--space-xl);
+            background: var(--color-surface);
+            border: 1px solid var(--color-border-light);
+            border-radius: var(--radius-lg);
+            cursor: pointer;
+            transition: all var(--transition-base);
+            position: relative;
+            overflow: hidden
+        }
+
+        .inbox-item::before {
+            content: '';
+            position: absolute;
+            right: 0;
+            top: 0;
+            bottom: 0;
+            width: 4px;
+            background: var(--color-primary);
+            transform: scaleY(0);
+            transition: transform var(--transition-base);
+            border-radius: 0 4px 4px 0
+        }
+
+        .inbox-item:hover {
+            border-color: var(--color-primary-glow);
+            box-shadow: var(--shadow-card);
+            transform: translateY(-2px)
+        }
+
+        .inbox-item:hover::before {
+            transform: scaleY(1)
+        }
+
+        .inbox-item:active {
+            transform: scale(0.99)
+        }
+
+        .inbox-item.unread {
+            border-right: 4px solid var(--color-primary)
+        }
+
+        .inbox-item__avatar {
+            width: 48px;
+            height: 48px;
+            border-radius: var(--radius-md);
+            background: var(--color-primary-light);
+            color: var(--color-primary);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: var(--fs-lg);
+            font-weight: 700;
+            flex-shrink: 0;
+            text-transform: uppercase
+        }
+
+        .inbox-item__content {
+            flex: 1;
+            min-width: 0
+        }
+
+        .inbox-item__top-row {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: var(--space-md);
+            margin-bottom: 4px
+        }
+
+        .inbox-item__sender {
+            font-size: var(--fs-sm);
+            font-weight: 700;
+            color: var(--color-text-primary);
+            direction: ltr;
+            text-align: left;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis
+        }
+
+        .inbox-item__time {
+            font-size: var(--fs-xs);
+            color: var(--color-text-tertiary);
+            white-space: nowrap;
+            direction: ltr;
+            flex-shrink: 0
+        }
+
+        .inbox-item__subject {
+            font-size: var(--fs-sm);
+            color: var(--color-text-secondary);
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            line-height: 1.5
+        }
+
+        .inbox-item__arrow {
+            flex-shrink: 0;
+            color: var(--color-text-tertiary);
+            transition: color var(--transition-fast), transform var(--transition-fast)
+        }
+
+        .inbox-item:hover .inbox-item__arrow {
+            color: var(--color-primary);
+            transform: translateX(-4px)
+        }
+
+        .inbox-item.new-arrival {
+            animation: newEmail 0.6s cubic-bezier(0.34, 1.56, 0.64, 1)
+        }
+
+        @keyframes newEmail {
+            0% {
+                opacity: 0;
+                transform: translateY(-20px) scale(0.95)
+            }
+
+            100% {
+                opacity: 1;
+                transform: translateY(0) scale(1)
+            }
+        }
+
+        /* ===== EMAIL MODAL ===== */
+        .modal-overlay {
+            position: fixed;
+            inset: 0;
+            background: rgba(0, 0, 0, 0.5);
+            backdrop-filter: blur(6px);
+            -webkit-backdrop-filter: blur(6px);
+            z-index: 2000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: var(--space-xl);
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity var(--transition-base)
+        }
+
+        .modal-overlay.active {
+            opacity: 1;
+            pointer-events: auto
+        }
+
+        .modal {
+            width: 100%;
+            max-width: 680px;
+            max-height: 80vh;
+            background: var(--color-surface);
+            border-radius: var(--radius-xl);
+            box-shadow: var(--shadow-modal);
+            display: flex;
+            flex-direction: column;
+            transform: scale(0.92) translateY(20px);
+            transition: transform var(--transition-spring);
+            overflow: hidden
+        }
+
+        .modal-overlay.active .modal {
+            transform: scale(1) translateY(0)
+        }
+
+        .modal__header {
+            display: flex;
+            align-items: flex-start;
+            justify-content: space-between;
+            gap: var(--space-lg);
+            padding: var(--space-xl) var(--space-2xl);
+            border-bottom: 1px solid var(--color-border-light)
+        }
+
+        .modal__subject {
+            font-size: var(--fs-lg);
+            font-weight: 700;
+            color: var(--color-text-primary);
+            line-height: 1.5;
+            flex: 1
+        }
+
+        .modal__close-btn {
+            width: 36px;
+            height: 36px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: var(--radius-sm);
+            color: var(--color-text-tertiary);
+            transition: all var(--transition-fast);
+            flex-shrink: 0
+        }
+
+        .modal__close-btn:hover {
+            background: var(--color-error-light);
+            color: var(--color-error)
+        }
+
+        .modal__meta {
+            padding: var(--space-lg) var(--space-2xl);
+            background: var(--color-bg);
+            display: flex;
+            flex-direction: column;
+            gap: var(--space-sm)
+        }
+
+        .modal__meta-item {
+            display: flex;
+            align-items: center;
+            gap: var(--space-md);
+            font-size: var(--fs-sm)
+        }
+
+        .modal__meta-label {
+            font-weight: 700;
+            color: var(--color-text-primary);
+            min-width: 60px
+        }
+
+        .modal__meta-value {
+            color: var(--color-text-secondary);
+            direction: ltr;
+            text-align: left
+        }
+
+        .modal__body {
+            flex: 1;
+            padding: var(--space-2xl);
+            overflow-y: auto;
+            font-size: var(--fs-sm);
+            line-height: 1.9;
+            color: var(--color-text-secondary)
+        }
+
+        .modal__body iframe {
+            width: 100%;
+            min-height: 300px;
+            border: none;
+            border-radius: var(--radius-sm)
+        }
+
+        .modal__body .email-text-content {
+            white-space: pre-wrap;
+            word-wrap: break-word;
+            direction: ltr;
+            text-align: left
+        }
+
+        .modal__loading {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: var(--space-lg);
+            padding: var(--space-3xl) 0;
+            color: var(--color-text-tertiary);
+            font-size: var(--fs-sm)
+        }
+
+        .modal__footer {
+            padding: var(--space-lg) var(--space-2xl);
+            border-top: 1px solid var(--color-border-light);
+            display: flex;
+            justify-content: flex-start
+        }
+
+        /* Spinner */
+        .spinner {
+            width: 32px;
+            height: 32px;
+            border: 3px solid var(--color-border);
+            border-top-color: var(--color-primary);
+            border-radius: 50%;
+            animation: spin 0.8s linear infinite
+        }
+
+        @keyframes spin {
+            to {
+                transform: rotate(360deg)
+            }
+        }
+
+        /* ===== FEATURES ===== */
+        .features {
+            padding: var(--space-4xl) 0;
+            background: var(--color-surface)
+        }
+
+        .features__grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: var(--space-xl)
+        }
+
+        .feature-card {
+            background: var(--color-bg);
+            border: 1px solid var(--color-border-light);
+            border-radius: var(--radius-lg);
+            padding: var(--space-2xl);
+            text-align: center;
+            transition: transform var(--transition-base), box-shadow var(--transition-base), border-color var(--transition-base);
+            cursor: default
+        }
+
+        .feature-card:hover {
+            transform: translateY(-6px);
+            box-shadow: var(--shadow-card-hover);
+            border-color: var(--color-primary-glow)
+        }
+
+        .feature-card__icon-wrapper {
+            width: 64px;
+            height: 64px;
+            margin: 0 auto var(--space-lg);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: var(--color-primary-light);
+            border-radius: var(--radius-lg);
+            color: var(--color-primary);
+            transition: background var(--transition-base), transform var(--transition-base)
+        }
+
+        .feature-card:hover .feature-card__icon-wrapper {
+            background: var(--color-primary);
+            color: var(--color-text-inverse);
+            transform: scale(1.08)
+        }
+
+        .feature-card__title {
+            font-size: var(--fs-lg);
+            font-weight: 700;
+            color: var(--color-text-primary);
+            margin-bottom: var(--space-md)
+        }
+
+        .feature-card__description {
+            font-size: var(--fs-sm);
+            color: var(--color-text-secondary);
+            line-height: 1.8
+        }
+
+        /* ===== ILLUSTRATION ===== */
+        .illustration-section {
+            padding: var(--space-3xl) 0 0
+        }
+
+        .illustration-wrapper {
+            max-width: 700px;
+            margin: 0 auto
+        }
+
+        .hero-illustration {
+            width: 100%;
+            height: auto
+        }
+
+        /* ===== HOW IT WORKS ===== */
+        .how-it-works {
+            padding: var(--space-4xl) 0;
+            background: var(--color-bg)
+        }
+
+        .steps {
+            display: flex;
+            justify-content: center;
+            gap: 0;
+            position: relative;
+            max-width: 900px;
+            margin: 0 auto
+        }
+
+        .step {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            position: relative;
+            padding: 0 var(--space-lg)
+        }
+
+        .step__number-wrapper {
+            width: 48px;
+            height: 48px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: var(--color-primary);
+            color: var(--color-text-inverse);
+            border-radius: 50%;
+            font-size: var(--fs-lg);
+            font-weight: 700;
+            margin-bottom: var(--space-xl);
+            position: relative;
+            z-index: 2;
+            box-shadow: var(--shadow-primary)
+        }
+
+        .step__connector {
+            position: absolute;
+            top: 24px;
+            left: 0;
+            width: calc(50% - 24px);
+            height: 2px;
+            background: var(--color-primary);
+            opacity: 0.3;
+            z-index: 1
+        }
+
+        .step:first-child .step__connector {
+            display: none
+        }
+
+        .step__content {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: var(--space-md)
+        }
+
+        .step__icon {
+            width: 72px;
+            height: 72px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: var(--color-surface);
+            border: 2px solid var(--color-border);
+            border-radius: var(--radius-lg);
+            color: var(--color-primary);
+            box-shadow: var(--shadow-sm);
+            transition: all var(--transition-base)
+        }
+
+        .step:hover .step__icon {
+            border-color: var(--color-primary);
+            box-shadow: var(--shadow-md);
+            transform: translateY(-4px)
+        }
+
+        .step__title {
+            font-size: var(--fs-base);
+            font-weight: 700;
+            color: var(--color-text-primary)
+        }
+
+        .step__description {
+            font-size: var(--fs-sm);
+            color: var(--color-text-secondary);
+            line-height: 1.7;
+            max-width: 240px
+        }
+
+        /* ===== FAQ ===== */
+        .faq {
+            padding: var(--space-4xl) 0;
+            background: var(--color-surface)
+        }
+
+        .faq__list {
+            max-width: 720px;
+            margin: 0 auto;
+            display: flex;
+            flex-direction: column;
+            gap: var(--space-md)
+        }
+
+        .faq-item {
+            background: var(--color-bg);
+            border: 1px solid var(--color-border-light);
+            border-radius: var(--radius-md);
+            overflow: hidden;
+            transition: border-color var(--transition-fast), box-shadow var(--transition-fast)
+        }
+
+        .faq-item.active {
+            border-color: var(--color-primary-glow);
+            box-shadow: 0 0 0 3px var(--color-primary-lighter)
+        }
+
+        .faq-item__question {
+            width: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: var(--space-lg) var(--space-xl);
+            font-size: var(--fs-base);
+            font-weight: 600;
+            color: var(--color-text-primary);
+            text-align: right;
+            transition: color var(--transition-fast)
+        }
+
+        .faq-item__question:hover {
+            color: var(--color-primary)
+        }
+
+        .faq-item__chevron {
+            flex-shrink: 0;
+            color: var(--color-text-tertiary);
+            transition: transform var(--transition-base), color var(--transition-fast)
+        }
+
+        .faq-item.active .faq-item__chevron {
+            transform: rotate(180deg);
+            color: var(--color-primary)
+        }
+
+        .faq-item__answer {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height var(--transition-slow), padding var(--transition-slow)
+        }
+
+        .faq-item__answer p {
+            padding: 0 var(--space-xl) var(--space-lg);
+            font-size: var(--fs-sm);
+            color: var(--color-text-secondary);
+            line-height: 1.9
+        }
+
+        .faq-item.active .faq-item__answer {
+            max-height: 300px
+        }
+
+        /* ===== FOOTER ===== */
+        .footer {
+            background: var(--color-text-primary);
+            color: var(--color-text-inverse);
+            padding: var(--space-3xl) 0 var(--space-xl)
+        }
+
+        .footer__inner {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: var(--space-xl)
+        }
+
+        .footer__brand {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: var(--space-sm)
+        }
+
+        .footer__logo {
+            display: flex;
+            align-items: center;
+            gap: var(--space-sm);
+            font-size: var(--fs-lg);
+            font-weight: 700;
+            color: var(--color-text-inverse)
+        }
+
+        .footer__logo svg {
+            color: var(--color-primary)
+        }
+
+        .footer__tagline {
+            font-size: var(--fs-sm);
+            color: rgba(255, 255, 255, 0.55)
+        }
+
+        .footer__links {
+            display: flex;
+            gap: var(--space-2xl)
+        }
+
+        .footer__links a {
+            font-size: var(--fs-sm);
+            color: rgba(255, 255, 255, 0.6);
+            transition: color var(--transition-fast)
+        }
+
+        .footer__links a:hover {
+            color: var(--color-primary)
+        }
+
+        .footer__bottom {
+            width: 100%;
+            text-align: center;
+            padding-top: var(--space-xl);
+            border-top: 1px solid rgba(255, 255, 255, 0.08)
+        }
+
+        .footer__bottom p {
+            font-size: var(--fs-xs);
+            color: rgba(255, 255, 255, 0.4)
+        }
+
+        /* ===== TOAST ===== */
+        .toast {
+            position: fixed;
+            bottom: 32px;
+            left: 50%;
+            transform: translateX(-50%) translateY(120px);
+            display: flex;
+            align-items: center;
+            gap: var(--space-sm);
+            padding: 14px 24px;
+            background: var(--color-text-primary);
+            color: var(--color-text-inverse);
+            font-size: var(--fs-sm);
+            font-weight: 600;
+            border-radius: var(--radius-full);
+            box-shadow: var(--shadow-xl);
+            z-index: 9999;
+            opacity: 0;
+            pointer-events: none;
+            transition: transform 0.5s cubic-bezier(0.34, 1.56, 0.64, 1), opacity 0.4s ease
+        }
+
+        .toast svg {
+            color: var(--color-primary);
+            flex-shrink: 0
+        }
+
+        .toast.show {
+            opacity: 1;
+            transform: translateX(-50%) translateY(0);
+            pointer-events: auto
+        }
+
+        .toast.error svg {
+            color: var(--color-error)
+        }
+
+        /* ===== NAV OVERLAY ===== */
+        .nav-overlay {
+            position: fixed;
+            inset: 0;
+            background: rgba(0, 0, 0, 0.4);
+            backdrop-filter: blur(4px);
+            z-index: 998;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity var(--transition-base)
+        }
+
+        .nav-overlay.active {
+            opacity: 1;
+            pointer-events: auto
+        }
+
+        /* ===== RESPONSIVE ===== */
+        @media(max-width:1024px) {
+            :root {
+                --fs-4xl: 2.75rem;
+                --fs-3xl: 2rem
+            }
+
+            .features__grid {
+                gap: var(--space-lg)
+            }
+        }
+
+        @media(max-width:768px) {
+            :root {
+                --fs-4xl: 2.125rem;
+                --fs-3xl: 1.75rem;
+                --fs-2xl: 1.5rem;
+                --fs-xl: 1.25rem;
+                --header-height: 64px
+            }
+
+            .container {
+                padding: 0 var(--space-lg)
+            }
+
+            .header__menu-btn {
+                display: flex
+            }
+
+            .header__login-text {
+                display: none
+            }
+
+            .header__nav {
+                position: fixed;
+                top: 0;
+                left: 0;
+                width: 280px;
+                height: 100vh;
+                background: var(--color-surface);
+                flex-direction: column;
+                align-items: flex-start;
+                padding: calc(var(--header-height) + var(--space-xl)) var(--space-xl) var(--space-xl);
+                gap: var(--space-lg);
+                box-shadow: var(--shadow-xl);
+                transform: translateX(-100%);
+                transition: transform var(--transition-base);
+                z-index: 999
+            }
+
+            .header__nav.open {
+                transform: translateX(0)
+            }
+
+            .header__nav-link {
+                font-size: var(--fs-base);
+                width: 100%;
+                padding: var(--space-md) 0;
+                border-bottom: 1px solid var(--color-border-light)
+            }
+
+            .hero {
+                padding: calc(var(--header-height) + var(--space-2xl)) 0 var(--space-2xl)
+            }
+
+            .hero__inner {
+                gap: var(--space-xl)
+            }
+
+            .hero__subtitle {
+                font-size: var(--fs-base)
+            }
+
+            .email-card {
+                padding: var(--space-xl);
+                gap: var(--space-md)
+            }
+
+            .email-card__input-row {
+                flex-direction: column;
+                gap: var(--space-md)
+            }
+
+            .email-card__input-wrapper {
+                padding: 0 var(--space-md)
+            }
+
+            .email-card__copy-btn {
+                width: 100%;
+                padding: var(--space-md)
+            }
+
+            .email-card__footer {
+                flex-direction: column;
+                align-items: center;
+                gap: var(--space-sm)
+            }
+
+            .inbox-section {
+                padding: 0 0 var(--space-3xl)
+            }
+
+            .inbox-header {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: var(--space-md)
+            }
+
+            .inbox-item {
+                padding: var(--space-md) var(--space-lg);
+                gap: var(--space-md)
+            }
+
+            .inbox-item__avatar {
+                width: 40px;
+                height: 40px;
+                font-size: var(--fs-base)
+            }
+
+            .inbox-item__top-row {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 2px
+            }
+
+            .modal-overlay {
+                padding: var(--space-md);
+                align-items: flex-end
+            }
+
+            .modal {
+                max-height: 90vh;
+                border-radius: var(--radius-xl) var(--radius-xl) 0 0
+            }
+
+            .modal__header {
+                padding: var(--space-lg)
+            }
+
+            .modal__meta {
+                padding: var(--space-md) var(--space-lg)
+            }
+
+            .modal__body {
+                padding: var(--space-lg)
+            }
+
+            .modal__footer {
+                padding: var(--space-md) var(--space-lg)
+            }
+
+            .features {
+                padding: var(--space-3xl) 0
+            }
+
+            .features__grid {
+                grid-template-columns: 1fr;
+                gap: var(--space-lg)
+            }
+
+            .how-it-works {
+                padding: var(--space-3xl) 0
+            }
+
+            .steps {
+                flex-direction: column;
+                gap: var(--space-2xl)
+            }
+
+            .step {
+                flex-direction: row;
+                text-align: right;
+                gap: var(--space-lg);
+                padding: 0
+            }
+
+            .step__number-wrapper {
+                margin-bottom: 0;
+                flex-shrink: 0
+            }
+
+            .step__connector {
+                display: none !important
+            }
+
+            .step__content {
+                align-items: flex-start
+            }
+
+            .step__icon {
+                width: 56px;
+                height: 56px
+            }
+
+            .step__description {
+                max-width: none
+            }
+
+            .faq {
+                padding: var(--space-3xl) 0
+            }
+
+            .faq-item__question {
+                padding: var(--space-md) var(--space-lg);
+                font-size: var(--fs-sm)
+            }
+
+            .faq-item__answer p {
+                padding: 0 var(--space-lg) var(--space-md)
+            }
+
+            .section-header {
+                margin-bottom: var(--space-2xl)
+            }
+
+            .footer__links {
+                flex-wrap: wrap;
+                justify-content: center;
+                gap: var(--space-lg)
+            }
+
+            .toast {
+                bottom: 20px;
+                font-size: var(--fs-xs);
+                padding: 12px 20px
+            }
+
+            .auth-modal {
+                padding: var(--space-xl)
+            }
+
+            .user-profile-dropdown {
+                left: var(--space-md);
+                right: var(--space-md);
+                width: auto
+            }
+        }
+
+        @media(max-width:400px) {
+            :root {
+                --fs-4xl: 1.75rem;
+                --fs-3xl: 1.5rem
+            }
+
+            .container {
+                padding: 0 var(--space-md)
+            }
+
+            .email-card {
+                padding: var(--space-lg)
+            }
+
+            .inbox-empty {
+                padding: var(--space-2xl) var(--space-md)
+            }
+        }
+
+        /* ===== SECTION IMAGES ===== */
+        .section-img-wrapper {
+            display: flex;
+            justify-content: center;
+            margin-bottom: var(--space-2xl);
+        }
+
+        .section-img {
+            width: 220px;
+            height: auto;
+            animation: sectionFloat 4s ease-in-out infinite;
+            filter: drop-shadow(0 8px 24px rgba(92, 184, 92, 0.13));
+            transition: transform var(--transition-base);
+        }
+
+        .section-img:hover {
+            transform: scale(1.07)
+        }
+
+        @keyframes sectionFloat {
+
+            0%,
+            100% {
+                transform: translateY(0)
+            }
+
+            50% {
+                transform: translateY(-14px)
+            }
+        }
+
+        .section-img--bounce {
+            animation: sectionBounce 3s ease-in-out infinite
+        }
+
+        @keyframes sectionBounce {
+
+            0%,
+            100% {
+                transform: translateY(0) rotate(0deg)
+            }
+
+            25% {
+                transform: translateY(-10px) rotate(1.5deg)
+            }
+
+            75% {
+                transform: translateY(-6px) rotate(-1.5deg)
+            }
+        }
+
+        .section-img--pulse {
+            animation: sectionPulse 3.5s ease-in-out infinite
+        }
+
+        @keyframes sectionPulse {
+
+            0%,
+            100% {
+                transform: scale(1);
+                opacity: 1
+            }
+
+            50% {
+                transform: scale(1.04);
+                opacity: 0.92
+            }
+        }
+
+        .section-img--slide {
+            animation: sectionSlide 4.5s ease-in-out infinite
+        }
+
+        @keyframes sectionSlide {
+
+            0%,
+            100% {
+                transform: translateX(0)
+            }
+
+            50% {
+                transform: translateX(10px)
+            }
+        }
+
+        /* ===== COMPARISON SECTION ===== */
+        .comparison {
+            padding: var(--space-4xl) 0;
+            background: linear-gradient(180deg, var(--color-surface) 0%, var(--color-bg) 100%)
+        }
+
+        .comparison__grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: var(--space-2xl);
+            max-width: 900px;
+            margin: 0 auto
+        }
+
+        .comparison__card {
+            background: var(--color-surface);
+            border-radius: var(--radius-xl);
+            padding: var(--space-2xl);
+            border: 2px solid var(--color-border-light);
+            transition: all var(--transition-base);
+            position: relative;
+            overflow: hidden
+        }
+
+        .comparison__card--pro {
+            border-color: var(--color-primary);
+            box-shadow: 0 0 0 3px var(--color-primary-light), var(--shadow-card)
+        }
+
+        .comparison__card--pro::before {
+            content: '⭐ الأفضل';
+            position: absolute;
+            top: 16px;
+            left: 16px;
+            background: var(--color-primary);
+            color: white;
+            font-size: var(--fs-xs);
+            font-weight: 700;
+            padding: 4px 14px;
+            border-radius: var(--radius-full)
+        }
+
+        .comparison__card:hover {
+            transform: translateY(-4px);
+            box-shadow: var(--shadow-card-hover)
+        }
+
+        .comparison__card-title {
+            font-size: var(--fs-xl);
+            font-weight: 700;
+            color: var(--color-text-primary);
+            margin-bottom: var(--space-sm);
+            display: flex;
+            align-items: center;
+            gap: var(--space-sm)
+        }
+
+        .comparison__card-subtitle {
+            font-size: var(--fs-sm);
+            color: var(--color-text-secondary);
+            margin-bottom: var(--space-xl);
+            line-height: 1.7
+        }
+
+        .comparison__list {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: var(--space-md)
+        }
+
+        .comparison__list li {
+            display: flex;
+            align-items: center;
+            gap: var(--space-sm);
+            font-size: var(--fs-sm);
+            color: var(--color-text-secondary);
+            line-height: 1.6
+        }
+
+        .comparison__list li svg {
+            flex-shrink: 0
+        }
+
+        .comparison__list li.disabled {
+            opacity: 0.45;
+            text-decoration: line-through
+        }
+
+        .comparison__cta {
+            margin-top: var(--space-xl);
+            width: 100%;
+            padding: 14px;
+            font-size: var(--fs-base);
+            border-radius: var(--radius-md)
+        }
+
+        @media(max-width:768px) {
+            .comparison__grid {
+                grid-template-columns: 1fr;
+                gap: var(--space-lg)
+            }
+        }
+
+        /* ===== AUTH MODAL — REDESIGNED ===== */
+        .auth-modal--new {
+            max-width: 460px;
+            padding: 0;
+            overflow: hidden
+        }
+
+        .auth-modal__header-bar {
+            background: linear-gradient(135deg, #5CB85C 0%, #4CAF4C 100%);
+            padding: var(--space-2xl) var(--space-2xl) var(--space-xl);
+            text-align: center;
+            position: relative
+        }
+
+        .auth-modal__header-bar .auth-modal__close {
+            position: absolute;
+            top: 12px;
+            left: 12px;
+            color: rgba(255, 255, 255, 0.7)
+        }
+
+        .auth-modal__header-bar .auth-modal__close:hover {
+            background: rgba(255, 255, 255, 0.2);
+            color: white
+        }
+
+        .auth-modal__header-icon {
+            width: 56px;
+            height: 56px;
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto var(--space-md);
+            color: white;
+            backdrop-filter: blur(8px)
+        }
+
+        .auth-modal__header-title {
+            font-size: var(--fs-xl);
+            font-weight: 700;
+            color: white;
+            margin-bottom: 4px
+        }
+
+        .auth-modal__header-sub {
+            font-size: var(--fs-sm);
+            color: rgba(255, 255, 255, 0.8)
+        }
+
+        .auth-modal__body-area {
+            padding: var(--space-xl) var(--space-2xl) var(--space-2xl)
+        }
+
+        .auth-tabs {
+            display: flex;
+            gap: 0;
+            margin-bottom: var(--space-xl);
+            background: var(--color-bg);
+            border-radius: var(--radius-md);
+            padding: 4px
+        }
+
+        .auth-tab {
+            flex: 1;
+            padding: 10px;
+            font-size: var(--fs-sm);
+            font-weight: 600;
+            color: var(--color-text-secondary);
+            border-radius: var(--radius-sm);
+            text-align: center;
+            transition: all var(--transition-fast);
+            cursor: pointer
+        }
+
+        .auth-tab.active {
+            background: var(--color-surface);
+            color: var(--color-primary);
+            box-shadow: var(--shadow-xs)
+        }
+
+        .auth-tab:hover:not(.active) {
+            color: var(--color-text-primary)
+        }
+
+        .auth-tab-content {
+            display: none
+        }
+
+        .auth-tab-content.active {
+            display: block
+        }
+
+        .auth-form-group {
+            margin-bottom: var(--space-md)
+        }
+
+        .auth-form-group label {
+            display: block;
+            font-size: var(--fs-sm);
+            font-weight: 600;
+            color: var(--color-text-primary);
+            margin-bottom: 6px
+        }
+
+        .auth-form-input {
+            width: 100%;
+            padding: 12px 16px;
+            border: 2px solid var(--color-border);
+            border-radius: var(--radius-md);
+            font-size: var(--fs-sm);
+            font-family: var(--font-family);
+            color: var(--color-text-primary);
+            background: var(--color-bg);
+            transition: border-color var(--transition-fast), box-shadow var(--transition-fast);
+            direction: ltr;
+            text-align: left
+        }
+
+        .auth-form-input:focus {
+            outline: none;
+            border-color: var(--color-primary);
+            box-shadow: 0 0 0 4px var(--color-primary-glow)
+        }
+
+        .auth-form-input::placeholder {
+            color: var(--color-text-tertiary)
+        }
+
+        .auth-form-submit {
+            width: 100%;
+            padding: 14px;
+            font-size: var(--fs-base);
+            font-weight: 700;
+            border-radius: var(--radius-md);
+            margin-top: var(--space-sm)
+        }
+
+        .auth-form-error {
+            font-size: var(--fs-xs);
+            color: var(--color-error);
+            margin-top: 6px;
+            display: none
+        }
+
+        .auth-form-error.show {
+            display: block
+        }
+
+        .auth-social-divider {
+            display: flex;
+            align-items: center;
+            gap: var(--space-md);
+            margin: var(--space-lg) 0;
+            color: var(--color-text-tertiary);
+            font-size: var(--fs-xs)
+        }
+
+        .auth-social-divider::before,
+        .auth-social-divider::after {
+            content: '';
+            flex: 1;
+            height: 1px;
+            background: var(--color-border)
+        }
+
+        .btn--github-auth-sm {
+            width: 100%;
+            padding: 12px;
+            font-size: var(--fs-sm);
+            background: var(--color-github);
+            color: white;
+            border-radius: var(--radius-md);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: var(--space-sm);
+            font-weight: 600;
+            transition: all var(--transition-fast)
+        }
+
+        .btn--github-auth-sm:hover {
+            background: var(--color-github-hover);
+            transform: translateY(-1px)
+        }
+
+        .auth-guest-link {
+            text-align: center;
+            margin-top: var(--space-lg);
+            padding-top: var(--space-lg);
+            border-top: 1px solid var(--color-border-light)
+        }
+
+        .auth-guest-link button {
+            font-size: var(--fs-sm);
+            color: var(--color-text-tertiary);
+            text-decoration: underline;
+            cursor: pointer;
+            transition: color var(--transition-fast)
+        }
+
+        .auth-guest-link button:hover {
+            color: var(--color-primary)
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- ===== HEADER & NAVIGATION ===== -->
+    <header class="header" id="header">
+        <div class="container header__inner">
+            <a href="#" class="header__logo" id="logo">
+                <svg width="28" height="28" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M12 2v20M17 5H7M17 19H7M7 5c0 4 5 4 5 7s5 3 5 7M17 5c0 4-5 4-5 7s-5 3-5 7"
+                        stroke="var(--color-primary)" stroke-width="2" stroke-linecap="round" />
+                    <rect x="10" y="10" width="4" height="4" rx="1" fill="var(--color-primary)" opacity="0.5" />
+                </svg>
+                <span>تيمبو <span class="header__logo-divider">|</span> Tempo</span>
+            </a>
+            <nav class="header__nav" id="mainNav">
+                <a href="#hero" class="header__nav-link">البريد المؤقت</a>
+                <a href="#inbox" class="header__nav-link">صندوق الوارد</a>
+                <a href="#features" class="header__nav-link">المميزات</a>
+                <a href="#comparison" class="header__nav-link">قارن بنفسك</a>
+                <a href="#how-it-works" class="header__nav-link">كيف يعمل</a>
+                <a href="#faq" class="header__nav-link">الأسئلة الشائعة</a>
+            </nav>
+            <div class="header__actions">
+                <button class="btn btn--primary header__login-btn" id="githubLoginBtn" aria-label="تسجيل الدخول"
+                    style="padding: 6px 14px; font-size: 0.85rem; border-radius: 8px;">
+                    <span class="header__login-text">تسجيل دخول</span>
+                </button>
+                <button class="header__menu-btn" id="menuBtn" aria-label="فتح القائمة">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                        stroke-linecap="round">
+                        <line x1="3" y1="6" x2="21" y2="6" />
+                        <line x1="3" y1="12" x2="21" y2="12" />
+                        <line x1="3" y1="18" x2="21" y2="18" />
+                    </svg>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- ===== AUTH MODAL — REDESIGNED ===== -->
+    <div class="auth-overlay" id="authOverlay" aria-hidden="true">
+        <div class="auth-modal auth-modal--new" id="authModal" role="dialog" aria-modal="true"
+            aria-labelledby="authTitle">
+            <!-- Header -->
+            <div class="auth-modal__header-bar">
+                <button class="auth-modal__close" id="authCloseBtn" aria-label="إغلاق">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                        stroke-linecap="round">
+                        <line x1="18" y1="6" x2="6" y2="18" />
+                        <line x1="6" y1="6" x2="18" y2="18" />
+                    </svg>
+                </button>
+                <div class="auth-modal__header-icon">
+                    <svg width="28" height="28" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <rect x="2" y="4" width="20" height="16" rx="3" stroke="currentColor" stroke-width="1.8" />
+                        <path d="M2 7L10.8 12.6C11.5111 13.0592 12.4889 13.0592 13.2 12.6L22 7" stroke="currentColor"
+                            stroke-width="1.8" stroke-linecap="round" />
+                    </svg>
+                </div>
+                <h3 class="auth-modal__header-title" id="authTitle">مرحباً بك في تيمبو</h3>
+                <p class="auth-modal__header-sub">قم بتسجيل الدخول واستمتع بكافة المميزات الحصرية</p>
+            </div>
+            <!-- Body -->
+            <div class="auth-modal__body-area">
+                <!-- Tabs -->
+                <div class="auth-tabs">
+                    <button class="auth-tab active" data-tab="login">تسجيل الدخول</button>
+                    <button class="auth-tab" data-tab="register">إنشاء حساب</button>
+                </div>
+
+                <!-- Tab: Login -->
+                <div class="auth-tab-content active" id="authTabLogin">
+                    <div class="auth-form-group">
+                        <label for="loginEmail">البريد الإلكتروني</label>
+                        <input type="email" class="auth-form-input" id="loginEmail" placeholder="example@email.com"
+                            autocomplete="email">
+                    </div>
+                    <div class="auth-form-group">
+                        <label for="loginPassword">كلمة المرور</label>
+                        <input type="password" class="auth-form-input" id="loginPassword" placeholder="••••••••"
+                            autocomplete="current-password">
+                    </div>
+                    <div class="auth-form-error" id="loginError"></div>
+                    <button class="btn btn--primary auth-form-submit" id="loginSubmitBtn">تسجيل الدخول</button>
+                </div>
+
+                <!-- Tab: Register -->
+                <div class="auth-tab-content" id="authTabRegister">
+                    <div class="auth-form-group">
+                        <label for="registerName">الاسم</label>
+                        <input type="text" class="auth-form-input" id="registerName" placeholder="اسمك الكامل"
+                            autocomplete="name" style="direction:rtl;text-align:right">
+                    </div>
+                    <div class="auth-form-group">
+                        <label for="registerEmail">البريد الإلكتروني</label>
+                        <input type="email" class="auth-form-input" id="registerEmail" placeholder="example@email.com"
+                            autocomplete="email">
+                    </div>
+                    <div class="auth-form-group">
+                        <label for="registerPassword">كلمة المرور</label>
+                        <input type="password" class="auth-form-input" id="registerPassword"
+                            placeholder="6 حروف على الأقل" autocomplete="new-password">
+                    </div>
+                    <div class="auth-form-error" id="registerError"></div>
+                    <button class="btn btn--primary auth-form-submit" id="registerSubmitBtn">إنشاء حساب</button>
+                </div>
+
+                <!-- Social Divider -->
+                <div class="auth-social-divider"><span>أو</span></div>
+
+                <!-- GitHub Login -->
+                <button class="btn--github-auth-sm" id="githubAuthBtn">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                        <path
+                            d="M12 0C5.374 0 0 5.373 0 12c0 5.302 3.438 9.8 8.207 11.387.6.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23A11.509 11.509 0 0112 5.803c1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576C20.566 21.797 24 17.3 24 12c0-6.627-5.373-12-12-12z" />
+                    </svg>
+                    <span>المتابعة عبر GitHub</span>
+                </button>
+
+                <!-- Guest -->
+                <div class="auth-guest-link">
+                    <button id="guestBtn">الاستمرار كضيف بدون تسجيل</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ===== USER PROFILE (shown when logged in) ===== -->
+    <div class="user-profile-dropdown" id="userProfileDropdown" style="display: none;">
+        <div class="user-profile-dropdown__header">
+            <img src="" alt="Avatar" class="user-profile-dropdown__avatar" id="userAvatar">
+            <div>
+                <div class="user-profile-dropdown__name" id="userName">المستخدم</div>
+                <div class="user-profile-dropdown__handle" id="userHandle">@user</div>
+            </div>
+        </div>
+        <div class="user-profile-dropdown__divider"></div>
+        <button class="user-profile-dropdown__action" id="logoutBtn">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                stroke-linecap="round">
+                <path d="M9 21H5a2 2 0 01-2-2V5a2 2 0 012-2h4" />
+                <polyline points="16 17 21 12 16 7" />
+                <line x1="21" y1="12" x2="9" y2="12" />
+            </svg>
+            <span>تسجيل الخروج</span>
+        </button>
+    </div>
+
+    <!-- ===== HERO SECTION ===== -->
+    <section class="hero" id="hero">
+        <div class="container hero__inner">
+            <div class="hero__content reveal-element">
+                <h1 class="hero__title">
+                    بريد إلكتروني مؤقت
+                    <span class="hero__title-highlight">بلمسة واحدة</span>
+                </h1>
+                <p class="hero__subtitle">
+                    احمِ صندوق بريدك الأساسي من الرسائل المزعجة والتسجيلات غير المرغوب فيها. احصل على بريد مؤقت فوري
+                    يُحذف تلقائيًا — بدون تسجيل، بدون كلمات مرور، بدون قلق.
+                </p>
+            </div>
+
+            <!-- THE EMAIL GENERATOR CARD -->
+            <div class="email-card reveal-element" id="emailCard">
+                <div class="email-card__badge" id="statusBadge">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path
+                            d="M12 22C17.5228 22 22 17.5228 22 12C22 6.47715 17.5228 2 12 2C6.47715 2 2 6.47715 2 12C2 17.5228 6.47715 22 12 22Z"
+                            stroke="currentColor" stroke-width="2" />
+                        <path d="M8 12L11 15L16 9" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                            stroke-linejoin="round" />
+                    </svg>
+                    <span id="statusText">جاري إنشاء بريدك المؤقت...</span>
+                </div>
+                <div class="email-card__input-row">
+                    <div class="email-card__input-wrapper">
+                        <svg class="email-card__input-icon" width="20" height="20" viewBox="0 0 24 24" fill="none"
+                            xmlns="http://www.w3.org/2000/svg">
+                            <rect x="2" y="4" width="20" height="16" rx="3" stroke="currentColor" stroke-width="1.8" />
+                            <path d="M2 7L10.8 12.6C11.5111 13.0592 12.4889 13.0592 13.2 12.6L22 7"
+                                stroke="currentColor" stroke-width="1.8" stroke-linecap="round" />
+                        </svg>
+                        <input type="text" class="email-card__input" id="emailInput" value="جاري التحميل..." readonly
+                            aria-label="البريد المؤقت">
+                        <div class="email-card__loading-dot" id="emailLoadingDot"></div>
+                    </div>
+                    <button class="btn btn--primary email-card__copy-btn" id="copyBtn" aria-label="نسخ البريد" disabled>
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <rect x="8" y="8" width="12" height="12" rx="2" stroke="currentColor" stroke-width="2" />
+                            <path
+                                d="M16 8V6C16 4.89543 15.1046 4 14 4H6C4.89543 4 4 4.89543 4 6V14C4 15.1046 4.89543 16 6 16H8"
+                                stroke="currentColor" stroke-width="2" />
+                        </svg>
+                        <span>نسخ</span>
+                    </button>
+                </div>
+                <button class="btn btn--secondary email-card__refresh-btn" id="refreshBtn">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M21 3V8H16" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                            stroke-linejoin="round" />
+                        <path d="M3 11C3.5 6.5 7.2 3 12 3C15.7 3 18.8 5.4 20.2 8.5" stroke="currentColor"
+                            stroke-width="2" stroke-linecap="round" />
+                        <path d="M3 21V16H8" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                            stroke-linejoin="round" />
+                        <path d="M21 13C20.5 17.5 16.8 21 12 21C8.3 21 5.2 18.6 3.8 15.5" stroke="currentColor"
+                            stroke-width="2" stroke-linecap="round" />
+                    </svg>
+                    <span>تغيير البريد</span>
+                </button>
+                <div class="email-card__footer">
+                    <div class="email-card__timer">
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <circle cx="12" cy="13" r="9" stroke="currentColor" stroke-width="1.8" />
+                            <path d="M12 9V13L15 15" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" />
+                            <path d="M9 2H15" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" />
+                        </svg>
+                        <span>ينتهي تلقائيًا بعد <strong id="timerDisplay">60:00</strong> دقيقة</span>
+                    </div>
+                    <div class="email-card__poll-status" id="pollStatus">
+                        <span class="poll-dot"></span>
+                        <span>يتم الفحص تلقائيًا</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Hero background decoration -->
+        <div class="hero__bg-decoration" aria-hidden="true">
+            <div class="hero__bg-circle hero__bg-circle--1"></div>
+            <div class="hero__bg-circle hero__bg-circle--2"></div>
+            <div class="hero__bg-circle hero__bg-circle--3"></div>
+        </div>
+    </section>
+
+    <!-- ===== INBOX SECTION ===== -->
+    <section class="inbox-section" id="inbox">
+        <div class="container">
+            <div class="inbox-header reveal-element">
+                <div class="inbox-header__right">
+                    <h2 class="inbox-header__title">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <rect x="2" y="4" width="20" height="16" rx="3" stroke="currentColor" stroke-width="1.8" />
+                            <path d="M2 7L10.8 12.6C11.5111 13.0592 12.4889 13.0592 13.2 12.6L22 7"
+                                stroke="currentColor" stroke-width="1.8" stroke-linecap="round" />
+                        </svg>
+                        صندوق الوارد
+                    </h2>
+                    <span class="inbox-header__count" id="inboxCount">0 رسائل</span>
+                </div>
+                <button class="btn btn--secondary inbox-header__refresh-btn" id="inboxRefreshBtn"
+                    aria-label="تحديث صندوق الوارد">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M21 3V8H16" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                            stroke-linejoin="round" />
+                        <path d="M3 11C3.5 6.5 7.2 3 12 3C15.7 3 18.8 5.4 20.2 8.5" stroke="currentColor"
+                            stroke-width="2" stroke-linecap="round" />
+                        <path d="M3 21V16H8" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                            stroke-linejoin="round" />
+                        <path d="M21 13C20.5 17.5 16.8 21 12 21C8.3 21 5.2 18.6 3.8 15.5" stroke="currentColor"
+                            stroke-width="2" stroke-linecap="round" />
+                    </svg>
+                    <span>تحديث</span>
+                </button>
+            </div>
+
+            <!-- Inbox Content -->
+            <div class="inbox-content" id="inboxContent">
+                <!-- Empty State -->
+                <div class="inbox-empty" id="inboxEmpty">
+                    <div class="inbox-empty__radar">
+                        <div class="inbox-empty__radar-ring inbox-empty__radar-ring--1"></div>
+                        <div class="inbox-empty__radar-ring inbox-empty__radar-ring--2"></div>
+                        <div class="inbox-empty__radar-ring inbox-empty__radar-ring--3"></div>
+                        <div class="inbox-empty__radar-center">
+                            <svg width="32" height="32" viewBox="0 0 24 24" fill="none"
+                                xmlns="http://www.w3.org/2000/svg">
+                                <rect x="2" y="4" width="20" height="16" rx="3" stroke="currentColor"
+                                    stroke-width="1.5" />
+                                <path d="M2 7L10.8 12.6C11.5111 13.0592 12.4889 13.0592 13.2 12.6L22 7"
+                                    stroke="currentColor" stroke-width="1.5" stroke-linecap="round" />
+                            </svg>
+                        </div>
+                    </div>
+                    <h3 class="inbox-empty__title">صندوق الوارد فارغ</h3>
+                    <p class="inbox-empty__description">في انتظار وصول الرسائل... استخدم البريد المؤقت أعلاه للتسجيل في
+                        أي موقع وستظهر الرسائل هنا تلقائيًا.</p>
+                </div>
+
+                <!-- Error State -->
+                <div class="inbox-error" id="inboxError" style="display: none;">
+                    <svg width="40" height="40" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="1.8" />
+                        <path d="M12 8V12" stroke="currentColor" stroke-width="2" stroke-linecap="round" />
+                        <circle cx="12" cy="16" r="1" fill="currentColor" />
+                    </svg>
+                    <h3 class="inbox-error__title">حدث خطأ في الاتصال</h3>
+                    <p class="inbox-error__description" id="errorMessage">جاري المحاولة مجددًا...</p>
+                </div>
+
+                <!-- Email List -->
+                <div class="inbox-list" id="inboxList" style="display: none;"></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== EMAIL READING MODAL ===== -->
+    <div class="modal-overlay" id="modalOverlay" aria-hidden="true">
+        <div class="modal" id="emailModal" role="dialog" aria-modal="true" aria-labelledby="modalSubject">
+            <div class="modal__header">
+                <h3 class="modal__subject" id="modalSubject">الموضوع</h3>
+                <button class="modal__close-btn" id="modalCloseBtn" aria-label="إغلاق">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                        stroke-linecap="round">
+                        <line x1="18" y1="6" x2="6" y2="18" />
+                        <line x1="6" y1="6" x2="18" y2="18" />
+                    </svg>
+                </button>
+            </div>
+            <div class="modal__meta">
+                <div class="modal__meta-item">
+                    <span class="modal__meta-label">من:</span>
+                    <span class="modal__meta-value" id="modalFrom">—</span>
+                </div>
+                <div class="modal__meta-item">
+                    <span class="modal__meta-label">إلى:</span>
+                    <span class="modal__meta-value" id="modalTo">—</span>
+                </div>
+                <div class="modal__meta-item">
+                    <span class="modal__meta-label">التاريخ:</span>
+                    <span class="modal__meta-value" id="modalDate">—</span>
+                </div>
+            </div>
+            <div class="modal__body" id="modalBody">
+                <div class="modal__loading">
+                    <div class="spinner"></div>
+                    <p>جاري تحميل محتوى الرسالة...</p>
+                </div>
+            </div>
+            <div class="modal__footer">
+                <button class="btn btn--secondary modal__close-action" id="modalCloseAction">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                        stroke-linecap="round">
+                        <line x1="18" y1="6" x2="6" y2="18" />
+                        <line x1="6" y1="6" x2="18" y2="18" />
+                    </svg>
+                    <span>إغلاق</span>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- ===== FEATURES SECTION ===== -->
+    <section class="features" id="features">
+        <div class="container">
+            <div class="section-header reveal-element">
+                <div class="section-img-wrapper">
+                    <img src="images/mailbox.png" alt="بريد مؤقت" class="section-img" loading="lazy">
+                </div>
+                <span class="section-header__badge">لماذا نحن؟</span>
+                <h2 class="section-header__title">مميزات تجعلنا الخيار الأول</h2>
+                <p class="section-header__subtitle">نوفر لك تجربة بريد مؤقت لا مثيل لها — سريعة، آمنة، وبدون أي تعقيدات.
+                </p>
+            </div>
+            <div class="features__grid">
+                <!-- Card 1: Lightning Fast -->
+                <div class="feature-card reveal-element" id="feature-speed">
+                    <div class="feature-card__icon-wrapper">
+                        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path
+                                d="M13 2L4.09344 12.6879C3.74463 13.1064 3.57023 13.3157 3.56756 13.4925C3.56524 13.6461 3.63372 13.7923 3.75324 13.8889C3.89073 14 4.16316 14 4.70802 14H12L11 22L19.9066 11.3121C20.2554 10.8936 20.4298 10.6843 20.4324 10.5075C20.4348 10.3539 20.3663 10.2077 20.2468 10.1111C20.1093 10 19.8368 10 19.292 10H12L13 2Z"
+                                stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                        </svg>
+                    </div>
+                    <h3 class="feature-card__title">السرعة الفائقة</h3>
+                    <p class="feature-card__description">بريدك المؤقت جاهز في أقل من ثانية واحدة. لا انتظار، لا تحميل —
+                        فقط انقر واستخدم فورًا في أي موقع تريده.</p>
+                </div>
+                <!-- Card 2: Spam Protection -->
+                <div class="feature-card reveal-element" id="feature-spam">
+                    <div class="feature-card__icon-wrapper">
+                        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path
+                                d="M12 2L3.5 6.5V11.5C3.5 16.45 7.02 21.07 12 22C16.98 21.07 20.5 16.45 20.5 11.5V6.5L12 2Z"
+                                stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                            <path d="M9 12L11 14L15 10" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                stroke-linejoin="round" />
+                        </svg>
+                    </div>
+                    <h3 class="feature-card__title">حماية من البريد المزعج</h3>
+                    <p class="feature-card__description">استخدم البريد المؤقت للتسجيل في المواقع المشبوهة واحمِ صندوق
+                        بريدك الأساسي من آلاف الرسائل غير المرغوب فيها.</p>
+                </div>
+                <!-- Card 3: Total Privacy -->
+                <div class="feature-card reveal-element" id="feature-privacy">
+                    <div class="feature-card__icon-wrapper">
+                        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <rect x="3" y="11" width="18" height="11" rx="2" stroke="currentColor" stroke-width="2" />
+                            <path d="M7 11V7C7 4.23858 9.23858 2 12 2C14.7614 2 17 4.23858 17 7V11"
+                                stroke="currentColor" stroke-width="2" stroke-linecap="round" />
+                            <circle cx="12" cy="16" r="1.5" fill="currentColor" />
+                        </svg>
+                    </div>
+                    <h3 class="feature-card__title">خصوصية تامة</h3>
+                    <p class="feature-card__description">جميع الرسائل تُحذف تلقائيًا بعد انتهاء المدة. لا نطلب أي بيانات
+                        شخصية — هويتك تبقى مجهولة تمامًا.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- HERO SVG ILLUSTRATION — BETWEEN FEATURES AND HOW IT WORKS -->
+        <div class="illustration-section reveal-element">
+            <div class="container">
+                <div class="illustration-wrapper">
+                    <svg class="hero-illustration" viewBox="0 0 800 320" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <!-- Background shapes -->
+                        <rect x="60" y="40" width="680" height="240" rx="24" fill="#F0FAF0" stroke="#5CB85C"
+                            stroke-width="1.5" stroke-dasharray="6 4" />
+                        <!-- Envelope 1 (main) -->
+                        <g transform="translate(300, 60)">
+                            <rect width="200" height="140" rx="16" fill="white" stroke="#5CB85C" stroke-width="2" />
+                            <path d="M0 30L80 90C90 97 110 97 120 90L200 30" stroke="#5CB85C" stroke-width="2"
+                                stroke-linecap="round" fill="none" />
+                            <rect x="30" y="100" width="80" height="6" rx="3" fill="#E8F5E8" />
+                            <rect x="30" y="112" width="120" height="6" rx="3" fill="#E8F5E8" />
+                            <!-- Seal/check -->
+                            <circle cx="170" cy="110" r="18" fill="#5CB85C" />
+                            <path d="M162 110L168 116L180 104" stroke="white" stroke-width="2.5" stroke-linecap="round"
+                                stroke-linejoin="round" />
+                        </g>
+                        <!-- Shield (left) -->
+                        <g transform="translate(100, 80)">
+                            <path d="M50 10L15 28V55C15 78 29 99 50 105C71 99 85 78 85 55V28L50 10Z" fill="#E8F5E8"
+                                stroke="#5CB85C" stroke-width="1.5" />
+                            <path d="M38 55L46 63L62 47" stroke="#5CB85C" stroke-width="2.5" stroke-linecap="round"
+                                stroke-linejoin="round" />
+                        </g>
+                        <!-- Lock (right) -->
+                        <g transform="translate(570, 85)">
+                            <rect x="10" y="40" width="80" height="60" rx="10" fill="#E8F5E8" stroke="#5CB85C"
+                                stroke-width="1.5" />
+                            <path d="M25 40V30C25 16 35 5 50 5C65 5 75 16 75 30V40" stroke="#5CB85C" stroke-width="2"
+                                stroke-linecap="round" fill="none" />
+                            <circle cx="50" cy="68" r="8" fill="#5CB85C" />
+                            <rect x="47" y="72" width="6" height="12" rx="3" fill="#5CB85C" />
+                        </g>
+                        <!-- Floating small envelopes -->
+                        <g transform="translate(180, 180)" opacity="0.5">
+                            <rect width="50" height="35" rx="6" fill="white" stroke="#5CB85C" stroke-width="1" />
+                            <path d="M0 8L20 22L25 22L50 8" stroke="#5CB85C" stroke-width="1" fill="none" />
+                        </g>
+                        <g transform="translate(560, 190)" opacity="0.4">
+                            <rect width="45" height="32" rx="5" fill="white" stroke="#5CB85C" stroke-width="1" />
+                            <path d="M0 7L18 20L22 20L45 7" stroke="#5CB85C" stroke-width="1" fill="none" />
+                        </g>
+                        <!-- Decorative dots -->
+                        <circle cx="140" cy="60" r="4" fill="#5CB85C" opacity="0.3" />
+                        <circle cx="660" cy="70" r="5" fill="#5CB85C" opacity="0.2" />
+                        <circle cx="250" cy="250" r="3" fill="#5CB85C" opacity="0.4" />
+                        <circle cx="580" cy="260" r="4" fill="#5CB85C" opacity="0.25" />
+                        <circle cx="400" cy="20" r="6" fill="#5CB85C" opacity="0.15" />
+                    </svg>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== COMPARISON SECTION ===== -->
+    <section class="comparison" id="comparison">
+        <div class="container">
+            <div class="section-header reveal-element">
+                <div class="section-img-wrapper">
+                    <img src="images/celebration.png" alt="مميزات حصرية" class="section-img section-img--pulse"
+                        loading="lazy">
+                </div>
+                <span class="section-header__badge">قارن بنفسك</span>
+                <h2 class="section-header__title">لماذا تسجل معنا؟ الفرق شاسع! 🚀</h2>
+                <p class="section-header__subtitle">شاهد الفرق بين المستخدم الزائر والمستخدم المسجل — ستشعر وكأنك تستخدم
+                    خدمة مختلفة تماماً</p>
+            </div>
+            <div class="comparison__grid reveal-element">
+                <!-- Guest Card -->
+                <div class="comparison__card">
+                    <h3 class="comparison__card-title">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#8B95A5" stroke-width="2">
+                            <circle cx="12" cy="8" r="4" />
+                            <path d="M5 20C5 17.2 8.1 15 12 15C15.9 15 19 17.2 19 20" />
+                        </svg>
+                        زائر (بدون تسجيل)
+                    </h3>
+                    <p class="comparison__card-subtitle">الخدمات الأساسية فقط — بدون مميزات إضافية</p>
+                    <ul class="comparison__list">
+                        <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#5CB85C"
+                                stroke-width="2.5">
+                                <path d="M20 6L9 17L4 12" />
+                            </svg> بريد مؤقت واحد</li>
+                        <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#5CB85C"
+                                stroke-width="2.5">
+                                <path d="M20 6L9 17L4 12" />
+                            </svg> استقبال الرسائل الأساسي</li>
+                        <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#5CB85C"
+                                stroke-width="2.5">
+                                <path d="M20 6L9 17L4 12" />
+                            </svg> صلاحية 60 دقيقة فقط</li>
+                        <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#5CB85C"
+                                stroke-width="2.5">
+                                <path d="M20 6L9 17L4 12" />
+                            </svg> نسخ البريد</li>
+                        <li class="disabled"><svg width="18" height="18" viewBox="0 0 24 24" fill="none"
+                                stroke="#E74C3C" stroke-width="2.5">
+                                <line x1="18" y1="6" x2="6" y2="18" />
+                                <line x1="6" y1="6" x2="18" y2="18" />
+                            </svg> حفظ سجل الرسائل</li>
+                        <li class="disabled"><svg width="18" height="18" viewBox="0 0 24 24" fill="none"
+                                stroke="#E74C3C" stroke-width="2.5">
+                                <line x1="18" y1="6" x2="6" y2="18" />
+                                <line x1="6" y1="6" x2="18" y2="18" />
+                            </svg> الوصول من أجهزة متعددة</li>
+                        <li class="disabled"><svg width="18" height="18" viewBox="0 0 24 24" fill="none"
+                                stroke="#E74C3C" stroke-width="2.5">
+                                <line x1="18" y1="6" x2="6" y2="18" />
+                                <line x1="6" y1="6" x2="18" y2="18" />
+                            </svg> تمديد صلاحية البريد</li>
+                        <li class="disabled"><svg width="18" height="18" viewBox="0 0 24 24" fill="none"
+                                stroke="#E74C3C" stroke-width="2.5">
+                                <line x1="18" y1="6" x2="6" y2="18" />
+                                <line x1="6" y1="6" x2="18" y2="18" />
+                            </svg> بريد مخصص باسمك</li>
+                        <li class="disabled"><svg width="18" height="18" viewBox="0 0 24 24" fill="none"
+                                stroke="#E74C3C" stroke-width="2.5">
+                                <line x1="18" y1="6" x2="6" y2="18" />
+                                <line x1="6" y1="6" x2="18" y2="18" />
+                            </svg> إشعارات فورية للرسائل</li>
+                        <li class="disabled"><svg width="18" height="18" viewBox="0 0 24 24" fill="none"
+                                stroke="#E74C3C" stroke-width="2.5">
+                                <line x1="18" y1="6" x2="6" y2="18" />
+                                <line x1="6" y1="6" x2="18" y2="18" />
+                            </svg> أرشيف الرسائل المحذوفة</li>
+                    </ul>
+                </div>
+                <!-- Pro Card -->
+                <div class="comparison__card comparison__card--pro">
+                    <h3 class="comparison__card-title">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#5CB85C" stroke-width="2">
+                            <path
+                                d="M12 2L15.09 8.26L22 9.27L17 14.14L18.18 21.02L12 17.77L5.82 21.02L7 14.14L2 9.27L8.91 8.26L12 2Z" />
+                        </svg>
+                        عضو مسجّل ✨
+                    </h3>
+                    <p class="comparison__card-subtitle">كل المميزات الحصرية — تجربة بريد مؤقت لا مثيل لها</p>
+                    <ul class="comparison__list">
+                        <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#5CB85C"
+                                stroke-width="2.5">
+                                <path d="M20 6L9 17L4 12" />
+                            </svg> <strong>عدد لا محدود</strong> من البريد المؤقت</li>
+                        <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#5CB85C"
+                                stroke-width="2.5">
+                                <path d="M20 6L9 17L4 12" />
+                            </svg> استقبال + <strong>تصنيف ذكي</strong> للرسائل</li>
+                        <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#5CB85C"
+                                stroke-width="2.5">
+                                <path d="M20 6L9 17L4 12" />
+                            </svg> صلاحية <strong>ممتدة حتى 24 ساعة</strong></li>
+                        <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#5CB85C"
+                                stroke-width="2.5">
+                                <path d="M20 6L9 17L4 12" />
+                            </svg> نسخ البريد بنقرة واحدة</li>
+                        <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#5CB85C"
+                                stroke-width="2.5">
+                                <path d="M20 6L9 17L4 12" />
+                            </svg> <strong>حفظ سجل كامل</strong> لكل الرسائل</li>
+                        <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#5CB85C"
+                                stroke-width="2.5">
+                                <path d="M20 6L9 17L4 12" />
+                            </svg> <strong>مزامنة بين كل أجهزتك</strong></li>
+                        <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#5CB85C"
+                                stroke-width="2.5">
+                                <path d="M20 6L9 17L4 12" />
+                            </svg> <strong>تمديد الصلاحية</strong> وقتما تحب</li>
+                        <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#5CB85C"
+                                stroke-width="2.5">
+                                <path d="M20 6L9 17L4 12" />
+                            </svg> <strong>بريد مخصص</strong> باختيارك</li>
+                        <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#5CB85C"
+                                stroke-width="2.5">
+                                <path d="M20 6L9 17L4 12" />
+                            </svg> <strong>إشعارات فورية</strong> لحظة وصول رسالة</li>
+                        <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#5CB85C"
+                                stroke-width="2.5">
+                                <path d="M20 6L9 17L4 12" />
+                            </svg> <strong>أرشيف محمي</strong> للرسائل المحذوفة</li>
+                    </ul>
+                    <button class="btn btn--primary comparison__cta" id="comparisonSignupBtn">سجل مجاناً واستمتع بكافة
+                        المميزات 🎉</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== HOW IT WORKS SECTION ===== -->
+    <section class="how-it-works" id="how-it-works">
+        <div class="container">
+            <div class="section-header reveal-element">
+                <div class="section-img-wrapper">
+                    <img src="images/envelope-check.png" alt="رسالة مؤكدة" class="section-img section-img--bounce"
+                        loading="lazy">
+                </div>
+                <span class="section-header__badge">خطوات بسيطة</span>
+                <h2 class="section-header__title">كيف يعمل؟</h2>
+                <p class="section-header__subtitle">ثلاث خطوات فقط تفصلك عن حماية خصوصيتك</p>
+            </div>
+            <div class="steps">
+                <div class="step reveal-element" id="step-1">
+                    <div class="step__number-wrapper"><span class="step__number">١</span></div>
+                    <div class="step__connector" aria-hidden="true"></div>
+                    <div class="step__content">
+                        <div class="step__icon">
+                            <svg width="32" height="32" viewBox="0 0 24 24" fill="none"
+                                xmlns="http://www.w3.org/2000/svg">
+                                <rect x="8" y="8" width="12" height="12" rx="2" stroke="currentColor"
+                                    stroke-width="1.8" />
+                                <path
+                                    d="M16 8V6C16 4.89543 15.1046 4 14 4H6C4.89543 4 4 4.89543 4 6V14C4 15.1046 4.89543 16 6 16H8"
+                                    stroke="currentColor" stroke-width="1.8" />
+                            </svg>
+                        </div>
+                        <h3 class="step__title">انسخ البريد</h3>
+                        <p class="step__description">اضغط على زر النسخ للحصول على بريدك المؤقت الجاهز للاستخدام في الحال
+                        </p>
+                    </div>
+                </div>
+                <div class="step reveal-element" id="step-2">
+                    <div class="step__number-wrapper"><span class="step__number">٢</span></div>
+                    <div class="step__connector" aria-hidden="true"></div>
+                    <div class="step__content">
+                        <div class="step__icon">
+                            <svg width="32" height="32" viewBox="0 0 24 24" fill="none"
+                                xmlns="http://www.w3.org/2000/svg">
+                                <circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="1.8" />
+                                <path d="M2 12H22" stroke="currentColor" stroke-width="1.8" />
+                                <path
+                                    d="M12 2C14.5 4.73835 15.9228 8.29203 16 12C15.9228 15.708 14.5 19.2616 12 22C9.5 19.2616 8.07725 15.708 8 12C8.07725 8.29203 9.5 4.73835 12 2Z"
+                                    stroke="currentColor" stroke-width="1.8" />
+                            </svg>
+                        </div>
+                        <h3 class="step__title">استخدمه في أي موقع</h3>
+                        <p class="step__description">ألصق البريد المؤقت في أي نموذج تسجيل أو موقع يطلب بريدك الإلكتروني
+                        </p>
+                    </div>
+                </div>
+                <div class="step reveal-element" id="step-3">
+                    <div class="step__number-wrapper"><span class="step__number">٣</span></div>
+                    <div class="step__content">
+                        <div class="step__icon">
+                            <svg width="32" height="32" viewBox="0 0 24 24" fill="none"
+                                xmlns="http://www.w3.org/2000/svg">
+                                <rect x="2" y="4" width="20" height="16" rx="3" stroke="currentColor"
+                                    stroke-width="1.8" />
+                                <path d="M2 7L10.8 12.6C11.5111 13.0592 12.4889 13.0592 13.2 12.6L22 7"
+                                    stroke="currentColor" stroke-width="1.8" stroke-linecap="round" />
+                                <path d="M14 15L16 17L20 13" stroke="currentColor" stroke-width="1.8"
+                                    stroke-linecap="round" stroke-linejoin="round" />
+                            </svg>
+                        </div>
+                        <h3 class="step__title">استقبل الرسائل واحمِ بريدك</h3>
+                        <p class="step__description">استقبل رسائل التأكيد والتحقق هنا مباشرة واحمِ بريدك الأساسي من
+                            البريد المزعج</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== FAQ SECTION ===== -->
+    <section class="faq" id="faq">
+        <div class="container">
+            <div class="section-header reveal-element">
+                <div class="section-img-wrapper">
+                    <img src="images/email-manage.png" alt="إدارة البريد" class="section-img section-img--slide"
+                        loading="lazy">
+                </div>
+                <span class="section-header__badge">أسئلة شائعة</span>
+                <h2 class="section-header__title">الأسئلة الشائعة</h2>
+                <p class="section-header__subtitle">إجابات سريعة لأكثر الأسئلة شيوعًا حول خدمة البريد المؤقت</p>
+            </div>
+            <div class="faq__list reveal-element">
+                <div class="faq-item" id="faq-item-1">
+                    <button class="faq-item__question" aria-expanded="false" aria-controls="faq-answer-1">
+                        <span>ما هو البريد الإلكتروني المؤقت؟</span>
+                        <svg class="faq-item__chevron" width="20" height="20" viewBox="0 0 24 24" fill="none">
+                            <path d="M6 9L12 15L18 9" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                stroke-linejoin="round" />
+                        </svg>
+                    </button>
+                    <div class="faq-item__answer" id="faq-answer-1">
+                        <p>البريد الإلكتروني المؤقت هو عنوان بريد إلكتروني يُنشأ لفترة محدودة يمكنك استخدامه للتسجيل في
+                            المواقع واستقبال الرسائل بدون الكشف عن بريدك الحقيقي. يتم حذف جميع الرسائل تلقائيًا بعد
+                            انتهاء الصلاحية.</p>
+                    </div>
+                </div>
+                <div class="faq-item" id="faq-item-2">
+                    <button class="faq-item__question" aria-expanded="false" aria-controls="faq-answer-2">
+                        <span>هل الخدمة مجانية بالكامل؟</span>
+                        <svg class="faq-item__chevron" width="20" height="20" viewBox="0 0 24 24" fill="none">
+                            <path d="M6 9L12 15L18 9" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                stroke-linejoin="round" />
+                        </svg>
+                    </button>
+                    <div class="faq-item__answer" id="faq-answer-2">
+                        <p>نعم، خدمة البريد المؤقت مجانية تمامًا وبدون أي قيود. لا نطلب منك التسجيل أو إدخال أي بيانات
+                            شخصية. فقط افتح الموقع واحصل على بريدك المؤقت فورًا.</p>
+                    </div>
+                </div>
+                <div class="faq-item" id="faq-item-3">
+                    <button class="faq-item__question" aria-expanded="false" aria-controls="faq-answer-3">
+                        <span>كم من الوقت يبقى البريد المؤقت فعّالاً؟</span>
+                        <svg class="faq-item__chevron" width="20" height="20" viewBox="0 0 24 24" fill="none">
+                            <path d="M6 9L12 15L18 9" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                stroke-linejoin="round" />
+                        </svg>
+                    </button>
+                    <div class="faq-item__answer" id="faq-answer-3">
+                        <p>يبقى البريد المؤقت فعّالاً لمدة 60 دقيقة من لحظة إنشائه. بعد ذلك، يتم حذف البريد وجميع
+                            الرسائل المرتبطة به بشكل نهائي لضمان خصوصيتك الكاملة.</p>
+                    </div>
+                </div>
+                <div class="faq-item" id="faq-item-4">
+                    <button class="faq-item__question" aria-expanded="false" aria-controls="faq-answer-4">
+                        <span>هل يمكنني إرسال رسائل من البريد المؤقت؟</span>
+                        <svg class="faq-item__chevron" width="20" height="20" viewBox="0 0 24 24" fill="none">
+                            <path d="M6 9L12 15L18 9" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                stroke-linejoin="round" />
+                        </svg>
+                    </button>
+                    <div class="faq-item__answer" id="faq-answer-4">
+                        <p>البريد المؤقت مخصص لاستقبال الرسائل فقط. يمكنك استخدامه لاستقبال رسائل التأكيد ورموز التحقق
+                            والإشعارات المختلفة من المواقع التي تسجل فيها.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== FOOTER ===== -->
+    <footer class="footer">
+        <div class="container footer__inner">
+            <div class="footer__brand">
+                <a href="#" class="footer__logo">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+                        <rect x="2" y="4" width="20" height="16" rx="3" stroke="currentColor" stroke-width="1.8" />
+                        <path d="M2 7L10.8 12.6C11.5111 13.0592 12.4889 13.0592 13.2 12.6L22 7" stroke="currentColor"
+                            stroke-width="1.8" stroke-linecap="round" />
+                    </svg>
+                    <span>مؤقت | TempMail</span>
+                </a>
+                <p class="footer__tagline">بريدك المؤقت الآمن — خصوصيتك أولويتنا.</p>
+            </div>
+            <div class="footer__links">
+                <a href="#features">المميزات</a>
+                <a href="#how-it-works">كيف يعمل</a>
+                <a href="#faq">الأسئلة الشائعة</a>
+            </div>
+            <div class="footer__bottom">
+                <p>© 2026 مؤقت | TempMail. جميع الحقوق محفوظة.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- ===== TOAST NOTIFICATION ===== -->
+    <div class="toast" id="toast" role="alert" aria-live="polite">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none">
+            <path
+                d="M12 22C17.5228 22 22 17.5228 22 12C22 6.47715 17.5228 2 12 2C6.47715 2 2 6.47715 2 12C2 17.5228 6.47715 22 12 22Z"
+                stroke="currentColor" stroke-width="2" />
+            <path d="M8 12L11 15L16 9" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                stroke-linejoin="round" />
+        </svg>
+        <span id="toastMessage">تم نسخ البريد بنجاح!</span>
+    </div>
+
+    <script>
+        /* =============================================
+           JavaScript — مؤقت | TempMail
+           BULLETPROOF Email Generation + GitHub OAuth
+           ============================================= */
+
+        (function () {
+            'use strict';
+
+            // =============================================
+            // 1. CONFIGURATION & STATE
+            // =============================================
+
+            // --- API Endpoints ---
+            var MAILTM_API = 'https://api.mail.tm';
+            var ONESECMAIL_API = 'https://www.1secmail.com/api/v1/';
+            var POLL_INTERVAL_MS = 6000;
+            var TIMER_DURATION = 3600;
+            var MAX_RETRIES = 5;
+            var RETRY_DELAY_MS = 1500;
+
+            // --- GitHub OAuth ---
+            var GITHUB_CLIENT_ID = 'Ov23liwH4B2bTN2KH9fq';
+            var GITHUB_REDIRECT_URI = window.location.origin + window.location.pathname;
+            // ✅ الـ Worker شغال على Cloudflare — GitHub Login جاهز!
+            var GITHUB_WORKER_URL = 'https://tempmail-github-auth.tempmail-omar.workers.dev';
+
+            // --- Fallback 1secmail domains ---
+            var ONESECMAIL_DOMAINS = ['1secmail.com', '1secmail.org', '1secmail.net', 'bheps.com', 'dcctb.com', 'kzccv.com', 'qiott.com', 'wuuvo.com'];
+
+            var state = {
+                currentEmail: '',
+                accountToken: '',
+                domain: '',
+                password: '',
+                login: '',
+                messages: [],
+                knownMessageIds: [],
+                pollIntervalId: null,
+                timerIntervalId: null,
+                remainingSeconds: TIMER_DURATION,
+                isGenerating: false,
+                errorCount: 0,
+                activeAPI: '', // 'mailtm' or '1secmail' or 'local'
+                // GitHub auth
+                githubUser: null,
+                profileDropdownOpen: false
+            };
+
+            // =============================================
+            // 2. DOM REFERENCES
+            // =============================================
+            var dom = {};
+
+            function cacheDom() {
+                dom = {
+                    emailInput: document.getElementById('emailInput'),
+                    copyBtn: document.getElementById('copyBtn'),
+                    refreshBtn: document.getElementById('refreshBtn'),
+                    statusBadge: document.getElementById('statusBadge'),
+                    statusText: document.getElementById('statusText'),
+                    emailLoadingDot: document.getElementById('emailLoadingDot'),
+                    timerDisplay: document.getElementById('timerDisplay'),
+                    pollStatus: document.getElementById('pollStatus'),
+                    toast: document.getElementById('toast'),
+                    toastMessage: document.getElementById('toastMessage'),
+                    header: document.getElementById('header'),
+                    menuBtn: document.getElementById('menuBtn'),
+                    mainNav: document.getElementById('mainNav'),
+                    inboxContent: document.getElementById('inboxContent'),
+                    inboxEmpty: document.getElementById('inboxEmpty'),
+                    inboxError: document.getElementById('inboxError'),
+                    inboxList: document.getElementById('inboxList'),
+                    inboxCount: document.getElementById('inboxCount'),
+                    inboxRefreshBtn: document.getElementById('inboxRefreshBtn'),
+                    errorMessage: document.getElementById('errorMessage'),
+                    modalOverlay: document.getElementById('modalOverlay'),
+                    emailModal: document.getElementById('emailModal'),
+                    modalSubject: document.getElementById('modalSubject'),
+                    modalFrom: document.getElementById('modalFrom'),
+                    modalTo: document.getElementById('modalTo'),
+                    modalDate: document.getElementById('modalDate'),
+                    modalBody: document.getElementById('modalBody'),
+                    modalCloseBtn: document.getElementById('modalCloseBtn'),
+                    modalCloseAction: document.getElementById('modalCloseAction'),
+                    githubLoginBtn: document.getElementById('githubLoginBtn'),
+                    authOverlay: document.getElementById('authOverlay'),
+                    authModal: document.getElementById('authModal'),
+                    authCloseBtn: document.getElementById('authCloseBtn'),
+                    githubAuthBtn: document.getElementById('githubAuthBtn'),
+                    guestBtn: document.getElementById('guestBtn'),
+                    userProfileDropdown: document.getElementById('userProfileDropdown'),
+                    userAvatar: document.getElementById('userAvatar'),
+                    userName: document.getElementById('userName'),
+                    userHandle: document.getElementById('userHandle'),
+                    logoutBtn: document.getElementById('logoutBtn'),
+                    revealElements: document.querySelectorAll('.reveal-element'),
+                    faqItems: document.querySelectorAll('.faq-item'),
+                    // Auth tabs & email forms
+                    authTabs: document.querySelectorAll('.auth-tab'),
+                    authTabLogin: document.getElementById('authTabLogin'),
+                    authTabRegister: document.getElementById('authTabRegister'),
+                    loginEmail: document.getElementById('loginEmail'),
+                    loginPassword: document.getElementById('loginPassword'),
+                    loginSubmitBtn: document.getElementById('loginSubmitBtn'),
+                    loginError: document.getElementById('loginError'),
+                    registerName: document.getElementById('registerName'),
+                    registerEmail: document.getElementById('registerEmail'),
+                    registerPassword: document.getElementById('registerPassword'),
+                    registerSubmitBtn: document.getElementById('registerSubmitBtn'),
+                    registerError: document.getElementById('registerError'),
+                    comparisonSignupBtn: document.getElementById('comparisonSignupBtn')
+                };
+            }
+
+            // =============================================
+            // 3. UTILITY HELPERS
+            // =============================================
+
+            function generateRandomString(length) {
+                var chars = 'abcdefghijklmnopqrstuvwxyz0123456789';
+                var result = '';
+                result += chars.charAt(Math.floor(Math.random() * 26));
+                for (var i = 1; i < length; i++) {
+                    result += chars.charAt(Math.floor(Math.random() * chars.length));
+                }
+                return result;
+            }
+
+            function escapeHtml(text) {
+                var div = document.createElement('div');
+                div.textContent = text || '';
+                return div.innerHTML;
+            }
+
+            function wait(ms) {
+                return new Promise(function (resolve) { setTimeout(resolve, ms); });
+            }
+
+            /**
+             * Fetch with timeout — prevents hanging forever
+             */
+            function fetchWithTimeout(url, options, timeoutMs) {
+                timeoutMs = timeoutMs || 10000;
+                return Promise.race([
+                    fetch(url, options),
+                    new Promise(function (_, reject) {
+                        setTimeout(function () { reject(new Error('Request timed out after ' + timeoutMs + 'ms')); }, timeoutMs);
+                    })
+                ]);
+            }
+
+            // =============================================
+            // 4. MAIL.TM API LAYER
+            // =============================================
+
+            async function mailtm_getDomains() {
+                var res = await fetchWithTimeout(MAILTM_API + '/domains', {}, 8000);
+                if (!res.ok) throw new Error('Domains: HTTP ' + res.status);
+                var data = await res.json();
+                var members = data['hydra:member'];
+                if (!members || members.length === 0) throw new Error('No domains');
+                // Return only active domains
+                return members.filter(function (d) { return d.isActive; });
+            }
+
+            async function mailtm_createAccount(address, password) {
+                var res = await fetchWithTimeout(MAILTM_API + '/accounts', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ address: address, password: password })
+                }, 10000);
+                if (!res.ok) {
+                    var errBody = '';
+                    try { errBody = await res.text(); } catch (e) { /* ignore */ }
+                    throw new Error('Account: HTTP ' + res.status + ' ' + errBody);
+                }
+                return await res.json();
+            }
+
+            async function mailtm_getToken(address, password) {
+                var res = await fetchWithTimeout(MAILTM_API + '/token', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ address: address, password: password })
+                }, 10000);
+                if (!res.ok) throw new Error('Token: HTTP ' + res.status);
+                return await res.json();
+            }
+
+            async function mailtm_getMessages(token) {
+                var res = await fetchWithTimeout(MAILTM_API + '/messages', {
+                    headers: { 'Authorization': 'Bearer ' + token }
+                }, 8000);
+                if (!res.ok) throw new Error('Messages: HTTP ' + res.status);
+                var data = await res.json();
+                return data['hydra:member'] || [];
+            }
+
+            async function mailtm_readMessage(token, messageId) {
+                var res = await fetchWithTimeout(MAILTM_API + '/messages/' + messageId, {
+                    headers: { 'Authorization': 'Bearer ' + token }
+                }, 10000);
+                if (!res.ok) throw new Error('Read: HTTP ' + res.status);
+                return await res.json();
+            }
+
+            // =============================================
+            // 5. 1SECMAIL API LAYER (FALLBACK)
+            // =============================================
+
+            async function onesecmail_generate() {
+                var res = await fetchWithTimeout(ONESECMAIL_API + '?action=genRandomMailbox&count=1', {}, 8000);
+                if (!res.ok) throw new Error('1secmail gen: HTTP ' + res.status);
+                var data = await res.json();
+                if (!Array.isArray(data) || data.length === 0) throw new Error('1secmail: empty response');
+                return data[0]; // e.g. "abc123@1secmail.com"
+            }
+
+            async function onesecmail_getMessages(login, domain) {
+                var url = ONESECMAIL_API + '?action=getMessages&login=' + encodeURIComponent(login) + '&domain=' + encodeURIComponent(domain);
+                var res = await fetchWithTimeout(url, {}, 8000);
+                if (!res.ok) throw new Error('1secmail msgs: HTTP ' + res.status);
+                return await res.json();
+            }
+
+            async function onesecmail_readMessage(login, domain, id) {
+                var url = ONESECMAIL_API + '?action=readMessage&login=' + encodeURIComponent(login) + '&domain=' + encodeURIComponent(domain) + '&id=' + id;
+                var res = await fetchWithTimeout(url, {}, 10000);
+                if (!res.ok) throw new Error('1secmail read: HTTP ' + res.status);
+                return await res.json();
+            }
+
+            // =============================================
+            // 6. BULLETPROOF EMAIL GENERATION
+            //    Try mail.tm → retry 5x → fallback 1secmail → local
+            // =============================================
+
+            async function generateNewEmail() {
+                if (state.isGenerating) return;
+                state.isGenerating = true;
+
+                stopPolling();
+                setStatus('loading', 'جاري إنشاء بريدك المؤقت...');
+                dom.emailInput.value = 'جاري التحميل...';
+                dom.emailLoadingDot.classList.add('active');
+                dom.copyBtn.disabled = true;
+
+                var success = false;
+
+                // === ATTEMPT 1: mail.tm with retries ===
+                for (var attempt = 1; attempt <= MAX_RETRIES && !success; attempt++) {
+                    try {
+                        console.log('[mail.tm] Attempt ' + attempt + '/' + MAX_RETRIES);
+                        if (attempt > 1) {
+                            setStatus('loading', 'محاولة ' + attempt + ' من ' + MAX_RETRIES + '...');
+                        }
+
+                        var domains = await mailtm_getDomains();
+                        var activeDomain = domains[0].domain;
+                        var username = generateRandomString(8 + Math.floor(Math.random() * 5));
+                        var emailAddress = username + '@' + activeDomain;
+                        var password = generateRandomString(20) + 'Aa1!';
+
+                        await mailtm_createAccount(emailAddress, password);
+                        var tokenData = await mailtm_getToken(emailAddress, password);
+
+                        // SUCCESS
+                        state.currentEmail = emailAddress;
+                        state.accountToken = tokenData.token;
+                        state.domain = activeDomain;
+                        state.login = username;
+                        state.password = password;
+                        state.activeAPI = 'mailtm';
+                        state.messages = [];
+                        state.knownMessageIds = [];
+                        state.errorCount = 0;
+                        success = true;
+                        console.log('[mail.tm] Success: ' + emailAddress);
+
+                    } catch (err) {
+                        console.warn('[mail.tm] Attempt ' + attempt + ' failed:', err.message);
+                        if (attempt < MAX_RETRIES) {
+                            await wait(RETRY_DELAY_MS);
+                        }
+                    }
+                }
+
+                // === ATTEMPT 2: 1secmail fallback ===
+                if (!success) {
+                    console.log('[1secmail] Trying fallback...');
+                    setStatus('loading', 'جاري تجربة سيرفر بديل...');
+
+                    for (var fallback = 1; fallback <= 3 && !success; fallback++) {
+                        try {
+                            var fallbackEmail = await onesecmail_generate();
+                            var parts = fallbackEmail.split('@');
+
+                            state.currentEmail = fallbackEmail;
+                            state.login = parts[0];
+                            state.domain = parts[1];
+                            state.accountToken = '';
+                            state.password = '';
+                            state.activeAPI = '1secmail';
+                            state.messages = [];
+                            state.knownMessageIds = [];
+                            state.errorCount = 0;
+                            success = true;
+                            console.log('[1secmail] Success: ' + fallbackEmail);
+
+                        } catch (err) {
+                            console.warn('[1secmail] Fallback ' + fallback + ' failed:', err.message);
+                            if (fallback < 3) await wait(1000);
+                        }
+                    }
+                }
+
+                // === ATTEMPT 3: Local generation (last resort — always works) ===
+                if (!success) {
+                    console.log('[local] Using local fallback');
+                    setStatus('loading', 'جاري إنشاء بريد محلي...');
+                    var localUser = generateRandomString(10);
+                    var localDomain = ONESECMAIL_DOMAINS[Math.floor(Math.random() * ONESECMAIL_DOMAINS.length)];
+                    var localEmail = localUser + '@' + localDomain;
+
+                    state.currentEmail = localEmail;
+                    state.login = localUser;
+                    state.domain = localDomain;
+                    state.accountToken = '';
+                    state.password = '';
+                    state.activeAPI = '1secmail'; // try fetching from 1secmail anyway
+                    state.messages = [];
+                    state.knownMessageIds = [];
+                    state.errorCount = 0;
+                    success = true;
+                    console.log('[local] Generated: ' + localEmail);
+                }
+
+                // === UPDATE UI ===
+                dom.emailInput.value = state.currentEmail;
+                dom.copyBtn.disabled = false;
+                dom.emailLoadingDot.classList.remove('active');
+                setStatus('success', 'بريدك المؤقت جاهز للاستخدام ✓');
+
+                clearInbox();
+                resetTimer();
+                startPolling();
+
+                state.isGenerating = false;
+            }
+
+            function setStatus(type, text) {
+                dom.statusBadge.className = 'email-card__badge';
+                if (type === 'loading') dom.statusBadge.classList.add('loading');
+                else if (type === 'error') dom.statusBadge.classList.add('error');
+                dom.statusText.textContent = text;
+            }
+
+            // =============================================
+            // 7. UNIFIED INBOX POLLING
+            //    Routes to the correct API automatically
+            // =============================================
+
+            function startPolling() {
+                if (state.pollIntervalId) clearInterval(state.pollIntervalId);
+                // First immediate check
+                checkInbox();
+                state.pollIntervalId = setInterval(checkInbox, POLL_INTERVAL_MS);
+            }
+
+            function stopPolling() {
+                if (state.pollIntervalId) {
+                    clearInterval(state.pollIntervalId);
+                    state.pollIntervalId = null;
+                }
+            }
+
+            async function checkInbox() {
+                if (!state.currentEmail) return;
+
+                try {
+                    var messages = [];
+
+                    if (state.activeAPI === 'mailtm' && state.accountToken) {
+                        messages = await mailtm_getMessages(state.accountToken);
+                        // Normalize mail.tm format
+                        messages = messages.map(function (msg) {
+                            return {
+                                id: msg.id,
+                                from: msg.from ? (msg.from.address || msg.from) : 'مجهول',
+                                fromName: msg.from ? (msg.from.name || '') : '',
+                                subject: msg.subject || '',
+                                date: msg.createdAt || '',
+                                _api: 'mailtm'
+                            };
+                        });
+                    } else if (state.activeAPI === '1secmail') {
+                        var rawMsgs = await onesecmail_getMessages(state.login, state.domain);
+                        messages = rawMsgs.map(function (msg) {
+                            return {
+                                id: String(msg.id),
+                                from: msg.from || 'مجهول',
+                                fromName: '',
+                                subject: msg.subject || '',
+                                date: msg.date || '',
+                                _api: '1secmail'
+                            };
+                        });
+                    }
+
+                    state.errorCount = 0;
+                    dom.inboxError.style.display = 'none';
+
+                    if (messages.length === 0) {
+                        // Only show empty if list is also empty
+                        if (state.messages.length === 0) {
+                            showEmptyState();
+                        }
+                        updateInboxCount(state.messages.length);
+                        return;
+                    }
+
+                    var newMessages = [];
+                    messages.forEach(function (msg) {
+                        if (state.knownMessageIds.indexOf(msg.id) === -1) {
+                            newMessages.push(msg);
+                            state.knownMessageIds.push(msg.id);
+                            state.messages.push(msg);
+                        }
+                    });
+
+                    updateInboxCount(state.messages.length);
+
+                    if (newMessages.length > 0) {
+                        if (state.messages.length > newMessages.length) {
+                            showToast('وصلت ' + newMessages.length + ' رسالة جديدة! 📩');
+                        }
+                        renderInbox(state.messages, newMessages);
+                    }
+
+                } catch (error) {
+                    state.errorCount++;
+                    console.error('Inbox poll failed:', error.message);
+                    if (state.errorCount >= 4) {
+                        showErrorState('مشكلة في الاتصال بالسيرفر — هنحاول تاني تلقائيًا');
+                    }
+                }
+            }
+
+            // =============================================
+            // 8. INBOX UI RENDERING
+            // =============================================
+
+            function clearInbox() {
+                dom.inboxList.style.display = 'none';
+                dom.inboxList.innerHTML = '';
+                dom.inboxError.style.display = 'none';
+                state.messages = [];
+                state.knownMessageIds = [];
+                showEmptyState();
+                updateInboxCount(0);
+            }
+
+            function showEmptyState() {
+                dom.inboxEmpty.style.display = 'flex';
+                dom.inboxList.style.display = 'none';
+                dom.inboxError.style.display = 'none';
+            }
+
+            function showErrorState(message) {
+                dom.inboxError.style.display = 'flex';
+                dom.errorMessage.textContent = message;
+            }
+
+            function updateInboxCount(count) {
+                if (count === 0) dom.inboxCount.textContent = '0 رسائل';
+                else if (count === 1) dom.inboxCount.textContent = 'رسالة واحدة';
+                else if (count === 2) dom.inboxCount.textContent = 'رسالتان';
+                else if (count <= 10) dom.inboxCount.textContent = count + ' رسائل';
+                else dom.inboxCount.textContent = count + ' رسالة';
+            }
+
+            function renderInbox(messages, newMessagesList) {
+                dom.inboxEmpty.style.display = 'none';
+                dom.inboxError.style.display = 'none';
+                dom.inboxList.style.display = 'flex';
+
+                var newIds = [];
+                if (newMessagesList) {
+                    newMessagesList.forEach(function (msg) { newIds.push(msg.id); });
+                }
+
+                // Sort by date descending
+                var sorted = messages.slice().sort(function (a, b) {
+                    return new Date(b.date || 0) - new Date(a.date || 0);
+                });
+
+                dom.inboxList.innerHTML = '';
+                sorted.forEach(function (msg) {
+                    var isNew = newIds.indexOf(msg.id) !== -1;
+                    dom.inboxList.appendChild(createInboxItem(msg, isNew));
+                });
+            }
+
+            function createInboxItem(msg, isNew) {
+                var item = document.createElement('div');
+                item.className = 'inbox-item' + (isNew ? ' new-arrival unread' : '');
+                item.setAttribute('data-id', msg.id);
+                item.setAttribute('data-api', msg._api || state.activeAPI);
+                item.setAttribute('role', 'button');
+                item.setAttribute('tabindex', '0');
+
+                var senderEmail = msg.from || 'مجهول';
+                var senderName = msg.fromName || senderEmail;
+                var avatarLetter = (typeof senderEmail === 'string' ? senderEmail : 'M').charAt(0).toUpperCase();
+                var subject = msg.subject || '(بدون موضوع)';
+                var dateStr = formatDate(msg.date);
+
+                item.innerHTML =
+                    '<div class="inbox-item__avatar">' + escapeHtml(avatarLetter) + '</div>' +
+                    '<div class="inbox-item__content">' +
+                    '<div class="inbox-item__top-row">' +
+                    '<span class="inbox-item__sender">' + escapeHtml(senderName) + '</span>' +
+                    '<span class="inbox-item__time">' + escapeHtml(dateStr) + '</span>' +
+                    '</div>' +
+                    '<div class="inbox-item__subject">' + escapeHtml(subject) + '</div>' +
+                    '</div>' +
+                    '<svg class="inbox-item__arrow" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 18L9 12L15 6"/></svg>';
+
+                item.addEventListener('click', function () { openEmailModal(msg); });
+                item.addEventListener('keydown', function (e) {
+                    if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); openEmailModal(msg); }
+                });
+                return item;
+            }
+
+            function formatDate(dateStr) {
+                try {
+                    if (!dateStr) return '';
+                    var date = new Date(dateStr);
+                    if (isNaN(date.getTime())) return dateStr;
+                    var now = new Date();
+                    var diffMin = Math.floor((now - date) / 60000);
+                    if (diffMin < 1) return 'الآن';
+                    if (diffMin < 60) return 'منذ ' + diffMin + ' د';
+                    var diffHours = Math.floor(diffMin / 60);
+                    if (diffHours < 24) return 'منذ ' + diffHours + ' س';
+                    return String(date.getDate()).padStart(2, '0') + '/' + String(date.getMonth() + 1).padStart(2, '0') + ' ' + String(date.getHours()).padStart(2, '0') + ':' + String(date.getMinutes()).padStart(2, '0');
+                } catch (e) { return dateStr || ''; }
+            }
+
+            // =============================================
+            // 9. EMAIL READING MODAL
+            // =============================================
+
+            async function openEmailModal(msg) {
+                dom.modalSubject.textContent = msg.subject || '(بدون موضوع)';
+                dom.modalFrom.textContent = msg.from || '';
+                dom.modalTo.textContent = state.currentEmail;
+                dom.modalDate.textContent = msg.date || '';
+                dom.modalBody.innerHTML = '<div class="modal__loading"><div class="spinner"></div><p>جاري تحميل محتوى الرسالة...</p></div>';
+
+                showModal();
+
+                var itemEl = dom.inboxList.querySelector('[data-id="' + msg.id + '"]');
+                if (itemEl) itemEl.classList.remove('unread');
+
+                try {
+                    var full;
+                    var api = msg._api || state.activeAPI;
+
+                    if (api === 'mailtm' && state.accountToken) {
+                        full = await mailtm_readMessage(state.accountToken, msg.id);
+                        renderMessageBody_mailtm(full);
+                    } else if (api === '1secmail') {
+                        full = await onesecmail_readMessage(state.login, state.domain, msg.id);
+                        renderMessageBody_1secmail(full);
+                    }
+                } catch (error) {
+                    console.error('Failed to read message:', error);
+                    dom.modalBody.innerHTML = '<div class="modal__loading"><svg width="40" height="40" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="10" stroke="#E74C3C" stroke-width="1.8"/><path d="M12 8V12" stroke="#E74C3C" stroke-width="2" stroke-linecap="round"/><circle cx="12" cy="16" r="1" fill="#E74C3C"/></svg><p style="color:#E74C3C;">فشل تحميل محتوى الرسالة. حاول مرة أخرى.</p></div>';
+                }
+            }
+
+            function renderMessageBody_mailtm(full) {
+                var html = full.html;
+                var text = full.text;
+
+                if (html && Array.isArray(html)) html = html.join('');
+
+                if (html && typeof html === 'string' && html.trim().length > 0) {
+                    renderHtmlInIframe(html);
+                } else if (text && text.trim().length > 0) {
+                    dom.modalBody.innerHTML = '<div class="email-text-content">' + escapeHtml(text) + '</div>';
+                } else {
+                    dom.modalBody.innerHTML = '<p style="text-align:center;color:#8B95A5;padding:40px 0;">لا يوجد محتوى في هذه الرسالة.</p>';
+                }
+            }
+
+            function renderMessageBody_1secmail(full) {
+                var htmlBody = full.htmlBody || full.body || '';
+                var textBody = full.textBody || '';
+
+                if (htmlBody && htmlBody.trim().length > 0) {
+                    renderHtmlInIframe(htmlBody);
+                } else if (textBody && textBody.trim().length > 0) {
+                    dom.modalBody.innerHTML = '<div class="email-text-content">' + escapeHtml(textBody) + '</div>';
+                } else {
+                    dom.modalBody.innerHTML = '<p style="text-align:center;color:#8B95A5;padding:40px 0;">لا يوجد محتوى في هذه الرسالة.</p>';
+                }
+            }
+
+            function renderHtmlInIframe(htmlContent) {
+                var iframe = document.createElement('iframe');
+                iframe.sandbox = 'allow-same-origin';
+                iframe.style.cssText = 'width:100%;min-height:300px;border:none;border-radius:8px;background:#fff';
+                dom.modalBody.innerHTML = '';
+                dom.modalBody.appendChild(iframe);
+                var doc = iframe.contentDocument || iframe.contentWindow.document;
+                doc.open();
+                doc.write('<!DOCTYPE html><html dir="ltr"><head><meta charset="UTF-8"><style>body{font-family:"IBM Plex Sans Arabic",Arial,sans-serif;font-size:14px;line-height:1.7;color:#333;margin:12px;word-wrap:break-word;direction:ltr}img{max-width:100%;height:auto}a{color:#5CB85C}table{max-width:100%}</style></head><body>' + htmlContent + '</body></html>');
+                doc.close();
+                setTimeout(function () {
+                    try { iframe.style.height = Math.max(doc.body.scrollHeight + 40, 200) + 'px'; }
+                    catch (e) { iframe.style.height = '400px'; }
+                }, 500);
+            }
+
+            function showModal() {
+                dom.modalOverlay.classList.add('active');
+                dom.modalOverlay.setAttribute('aria-hidden', 'false');
+                document.body.style.overflow = 'hidden';
+            }
+
+            function closeModal() {
+                dom.modalOverlay.classList.remove('active');
+                dom.modalOverlay.setAttribute('aria-hidden', 'true');
+                document.body.style.overflow = '';
+            }
+
+            // =============================================
+            // 10. COPY TO CLIPBOARD
+            // =============================================
+
+            var toastTimeout = null;
+
+            function showToast(message, duration, isError) {
+                duration = duration || 2500;
+                if (toastTimeout) clearTimeout(toastTimeout);
+                dom.toastMessage.textContent = message;
+                dom.toast.classList.remove('error');
+                if (isError) dom.toast.classList.add('error');
+                dom.toast.classList.add('show');
+                toastTimeout = setTimeout(function () {
+                    dom.toast.classList.remove('show');
+                    toastTimeout = null;
+                }, duration);
+            }
+
+            function copyToClipboard() {
+                if (!state.currentEmail || dom.copyBtn.disabled) return;
+                var email = state.currentEmail;
+                if (navigator.clipboard && navigator.clipboard.writeText) {
+                    navigator.clipboard.writeText(email).then(onCopySuccess).catch(function () { fallbackCopy(email); });
+                } else {
+                    fallbackCopy(email);
+                }
+            }
+
+            function fallbackCopy(text) {
+                var ta = document.createElement('textarea');
+                ta.value = text;
+                ta.style.cssText = 'position:fixed;left:-9999px;top:-9999px';
+                document.body.appendChild(ta);
+                ta.focus();
+                ta.select();
+                try { document.execCommand('copy'); onCopySuccess(); }
+                catch (e) { showToast('فشل النسخ — حاول يدويًا', 2500, true); }
+                document.body.removeChild(ta);
+            }
+
+            function onCopySuccess() {
+                showToast('تم نسخ البريد بنجاح! ✓');
+                dom.copyBtn.classList.add('copied');
+                var original = dom.copyBtn.innerHTML;
+                dom.copyBtn.innerHTML = '<svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M20 6L9 17L4 12" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg><span>تم!</span>';
+                setTimeout(function () { dom.copyBtn.innerHTML = original; dom.copyBtn.classList.remove('copied'); }, 1800);
+            }
+
+            // =============================================
+            // 11. REFRESH BUTTON
+            // =============================================
+
+            function handleRefresh() {
+                var icon = dom.refreshBtn.querySelector('svg');
+                if (icon) {
+                    icon.style.transition = 'transform 0.5s cubic-bezier(0.4,0,0.2,1)';
+                    icon.style.transform = 'rotate(360deg)';
+                    setTimeout(function () { icon.style.transition = 'none'; icon.style.transform = 'rotate(0deg)'; }, 500);
+                }
+                stopPolling();
+                generateNewEmail();
+            }
+
+            // =============================================
+            // 12. COUNTDOWN TIMER
+            // =============================================
+
+            function resetTimer() {
+                if (state.timerIntervalId) clearInterval(state.timerIntervalId);
+                state.remainingSeconds = TIMER_DURATION;
+                updateTimerDisplay();
+                startTimer();
+            }
+
+            function startTimer() {
+                state.timerIntervalId = setInterval(function () {
+                    if (state.remainingSeconds > 0) {
+                        state.remainingSeconds--;
+                        updateTimerDisplay();
+                    } else {
+                        clearInterval(state.timerIntervalId);
+                        showToast('انتهت صلاحية البريد. جاري إنشاء بريد جديد...', 3000);
+                        handleRefresh();
+                    }
+                }, 1000);
+            }
+
+            function updateTimerDisplay() {
+                var m = Math.floor(state.remainingSeconds / 60);
+                var s = state.remainingSeconds % 60;
+                dom.timerDisplay.textContent = String(m).padStart(2, '0') + ':' + String(s).padStart(2, '0');
+            }
+
+            // =============================================
+            // 13. GITHUB OAUTH
+            // =============================================
+
+            function showAuthModal() {
+                dom.authOverlay.classList.add('active');
+                dom.authOverlay.setAttribute('aria-hidden', 'false');
+                document.body.style.overflow = 'hidden';
+            }
+
+            function closeAuthModal() {
+                dom.authOverlay.classList.remove('active');
+                dom.authOverlay.setAttribute('aria-hidden', 'true');
+                document.body.style.overflow = '';
+            }
+
+            function initiateGitHubLogin() {
+                var oauthState = generateRandomString(16);
+                localStorage.setItem('github_oauth_state', oauthState);
+
+                var authUrl = 'https://github.com/login/oauth/authorize' +
+                    '?client_id=' + encodeURIComponent(GITHUB_CLIENT_ID) +
+                    '&redirect_uri=' + encodeURIComponent(GITHUB_REDIRECT_URI) +
+                    '&scope=read:user' +
+                    '&state=' + oauthState;
+
+                window.location.href = authUrl;
+            }
+
+            /**
+             * After GitHub redirects back with ?code=XXX&state=YYY
+             * we need a backend to exchange the code for a token.
+             *
+             * For now, if there's a 'code' param, we try a Cloudflare Worker proxy.
+             * If the worker isn't set up, we show a friendly message.
+             */
+            async function handleGitHubCallback() {
+                var params = new URLSearchParams(window.location.search);
+                var code = params.get('code');
+                var returnedState = params.get('state');
+                if (!code) return;
+
+                var savedState = localStorage.getItem('github_oauth_state');
+                localStorage.removeItem('github_oauth_state');
+
+                // Clean URL immediately
+                window.history.replaceState({}, document.title, window.location.pathname);
+
+                if (savedState && returnedState !== savedState) {
+                    showToast('فشل التحقق من الأمان — حاول تاني', 3000, true);
+                    return;
+                }
+
+                showToast('جاري تسجيل الدخول...', 10000);
+
+                // Try the Cloudflare Worker endpoint
+                var WORKER_URL = GITHUB_WORKER_URL;
+                try {
+                    var res = await fetchWithTimeout(WORKER_URL + '/auth/github', {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify({ code: code })
+                    }, 15000);
+
+                    if (res.ok) {
+                        var userData = await res.json();
+                        setLoggedInUI(userData);
+                        showToast('أهلًا بيك يا ' + (userData.name || userData.login) + '! 🎉');
+                        return;
+                    }
+                } catch (e) {
+                    console.warn('Worker not available:', e.message);
+                }
+
+                // If worker not set up, show message
+                showToast('تم استلام الكود — لتفعيل الدخول الكامل، تحتاج إعداد الـ Worker. ابعتلي الـ Secret وهعملهالك!', 6000, true);
+            }
+
+            function setLoggedInUI(user) {
+                state.githubUser = user;
+                localStorage.setItem('github_user', JSON.stringify(user));
+
+                dom.githubLoginBtn.classList.add('logged-in');
+                if (user.avatar_url) {
+                    dom.githubLoginBtn.innerHTML = '<img src="' + escapeHtml(user.avatar_url) + '" alt="' + escapeHtml(user.login || '') + '">';
+                    dom.userAvatar.src = user.avatar_url;
+                } else {
+                    var initial = (user.name || user.login || 'U').charAt(0).toUpperCase();
+                    dom.githubLoginBtn.innerHTML = '<span style="width:32px;height:32px;border-radius:50%;background:#5CB85C;color:white;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:14px">' + initial + '</span>';
+                    dom.userAvatar.style.display = 'none';
+                }
+                dom.userName.textContent = user.name || user.login || 'User';
+                dom.userHandle.textContent = '@' + (user.login || 'user');
+            }
+
+            function logout() {
+                state.githubUser = null;
+                localStorage.removeItem('github_user');
+                dom.githubLoginBtn.classList.remove('logged-in');
+                dom.githubLoginBtn.innerHTML = '<svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.374 0 0 5.373 0 12c0 5.302 3.438 9.8 8.207 11.387.6.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23A11.509 11.509 0 0112 5.803c1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576C20.566 21.797 24 17.3 24 12c0-6.627-5.373-12-12-12z"/></svg><span class="header__login-text">تسجيل الدخول</span>';
+                dom.userProfileDropdown.style.display = 'none';
+                showToast('تم تسجيل الخروج بنجاح');
+            }
+
+            function toggleProfileDropdown() {
+                if (state.githubUser) {
+                    state.profileDropdownOpen = !state.profileDropdownOpen;
+                    dom.userProfileDropdown.style.display = state.profileDropdownOpen ? 'block' : 'none';
+                } else {
+                    showAuthModal();
+                }
+            }
+
+            // =============================================
+            // 14. HEADER SCROLL
+            // =============================================
+
+            function handleScroll() {
+                if (dom.header) dom.header.classList.toggle('scrolled', window.pageYOffset > 50);
+                if (state.profileDropdownOpen) {
+                    state.profileDropdownOpen = false;
+                    dom.userProfileDropdown.style.display = 'none';
+                }
+            }
+
+            // =============================================
+            // 15. MOBILE NAV
+            // =============================================
+
+            var navOverlay = null;
+            function createNavOverlay() {
+                navOverlay = document.createElement('div');
+                navOverlay.className = 'nav-overlay';
+                document.body.appendChild(navOverlay);
+                navOverlay.addEventListener('click', closeNav);
+            }
+            function toggleNav() { dom.mainNav.classList.contains('open') ? closeNav() : openNav(); }
+            function openNav() {
+                dom.mainNav.classList.add('open');
+                if (navOverlay) navOverlay.classList.add('active');
+                document.body.style.overflow = 'hidden';
+                dom.menuBtn.innerHTML = '<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>';
+            }
+            function closeNav() {
+                dom.mainNav.classList.remove('open');
+                if (navOverlay) navOverlay.classList.remove('active');
+                document.body.style.overflow = '';
+                dom.menuBtn.innerHTML = '<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>';
+            }
+
+            // =============================================
+            // 16. SCROLL REVEAL
+            // =============================================
+
+            function setupScrollReveal() {
+                var observer = new IntersectionObserver(function (entries) {
+                    entries.forEach(function (entry) {
+                        if (entry.isIntersecting) {
+                            var delay = 0;
+                            var parent = entry.target.parentElement;
+                            if (parent && (parent.classList.contains('features__grid') || parent.classList.contains('steps'))) {
+                                var siblings = Array.from(parent.querySelectorAll('.reveal-element'));
+                                delay = siblings.indexOf(entry.target) * 120;
+                            }
+                            setTimeout(function () { entry.target.classList.add('revealed'); }, delay);
+                            observer.unobserve(entry.target);
+                        }
+                    });
+                }, { rootMargin: '0px 0px -60px 0px', threshold: 0.15 });
+                dom.revealElements.forEach(function (el) { observer.observe(el); });
+            }
+
+            // =============================================
+            // 17. FAQ ACCORDION
+            // =============================================
+
+            function setupFAQ() {
+                dom.faqItems.forEach(function (item) {
+                    var qBtn = item.querySelector('.faq-item__question');
+                    if (qBtn) {
+                        qBtn.addEventListener('click', function () {
+                            var isActive = item.classList.contains('active');
+                            dom.faqItems.forEach(function (o) {
+                                o.classList.remove('active');
+                                var ob = o.querySelector('.faq-item__question');
+                                if (ob) ob.setAttribute('aria-expanded', 'false');
+                            });
+                            if (!isActive) {
+                                item.classList.add('active');
+                                qBtn.setAttribute('aria-expanded', 'true');
+                            }
+                        });
+                    }
+                });
+            }
+
+            // =============================================
+            // 18. SMOOTH SCROLL
+            // =============================================
+
+            function setupSmoothScroll() {
+                document.querySelectorAll('a[href^="#"]').forEach(function (a) {
+                    a.addEventListener('click', function (e) {
+                        var id = this.getAttribute('href');
+                        if (id === '#') return;
+                        var el = document.querySelector(id);
+                        if (el) {
+                            e.preventDefault();
+                            var h = parseInt(getComputedStyle(document.documentElement).getPropertyValue('--header-height')) || 72;
+                            window.scrollTo({ top: el.getBoundingClientRect().top + window.pageYOffset - h - 16, behavior: 'smooth' });
+                            if (window.innerWidth <= 768) closeNav();
+                        }
+                    });
+                });
+            }
+
+            // =============================================
+            // 19. MODAL EVENT HANDLERS
+            // =============================================
+
+            function setupModals() {
+                dom.modalCloseBtn.addEventListener('click', closeModal);
+                dom.modalCloseAction.addEventListener('click', closeModal);
+                dom.modalOverlay.addEventListener('click', function (e) { if (e.target === dom.modalOverlay) closeModal(); });
+
+                dom.authCloseBtn.addEventListener('click', closeAuthModal);
+                dom.guestBtn.addEventListener('click', closeAuthModal);
+                dom.authOverlay.addEventListener('click', function (e) { if (e.target === dom.authOverlay) closeAuthModal(); });
+                dom.githubAuthBtn.addEventListener('click', initiateGitHubLogin);
+
+                // Auth Tabs
+                dom.authTabs.forEach(function (tab) {
+                    tab.addEventListener('click', function () {
+                        dom.authTabs.forEach(function (t) { t.classList.remove('active'); });
+                        tab.classList.add('active');
+                        var target = tab.getAttribute('data-tab');
+                        dom.authTabLogin.classList.toggle('active', target === 'login');
+                        dom.authTabRegister.classList.toggle('active', target === 'register');
+                    });
+                });
+
+                // Email Login
+                dom.loginSubmitBtn.addEventListener('click', function () {
+                    var email = dom.loginEmail.value.trim();
+                    var pass = dom.loginPassword.value.trim();
+                    dom.loginError.classList.remove('show');
+                    if (!email || !pass) {
+                        dom.loginError.textContent = 'يرجى إدخال البريد الإلكتروني وكلمة المرور';
+                        dom.loginError.classList.add('show');
+                        return;
+                    }
+                    var users = JSON.parse(localStorage.getItem('tempmail_users') || '{}');
+                    if (users[email] && users[email].password === pass) {
+                        var u = { name: users[email].name, login: email.split('@')[0], email: email, avatar_url: '' };
+                        setLoggedInUI(u);
+                        closeAuthModal();
+                        showToast('أهلاً بك مجدداً يا ' + users[email].name + '! 🎉');
+                    } else {
+                        dom.loginError.textContent = 'البريد أو كلمة المرور غير صحيحة';
+                        dom.loginError.classList.add('show');
+                    }
+                });
+
+                // Email Register
+                dom.registerSubmitBtn.addEventListener('click', function () {
+                    var name = dom.registerName.value.trim();
+                    var email = dom.registerEmail.value.trim();
+                    var pass = dom.registerPassword.value.trim();
+                    dom.registerError.classList.remove('show');
+                    if (!name || !email || !pass) {
+                        dom.registerError.textContent = 'يرجى ملء كافة الحقول';
+                        dom.registerError.classList.add('show');
+                        return;
+                    }
+                    if (pass.length < 6) {
+                        dom.registerError.textContent = 'يجب أن تتكون كلمة المرور من 6 أحرف على الأقل';
+                        dom.registerError.classList.add('show');
+                        return;
+                    }
+                    var users = JSON.parse(localStorage.getItem('tempmail_users') || '{}');
+                    if (users[email]) {
+                        dom.registerError.textContent = 'هذا البريد مسجل مسبقاً - حاول تسجيل الدخول';
+                        dom.registerError.classList.add('show');
+                        return;
+                    }
+                    users[email] = { name: name, password: pass };
+                    localStorage.setItem('tempmail_users', JSON.stringify(users));
+                    var u = { name: name, login: email.split('@')[0], email: email, avatar_url: '' };
+                    setLoggedInUI(u);
+                    closeAuthModal();
+                    showToast('تم إنشاء حسابك بنجاح يا ' + name + '! 🎉');
+                });
+
+                // Comparison CTA
+                if (dom.comparisonSignupBtn) {
+                    dom.comparisonSignupBtn.addEventListener('click', function () {
+                        if (state.githubUser) {
+                            showToast('أنت مسجل بالفعل! كافة المميزات متاحة لك 🎉');
+                        } else {
+                            showAuthModal();
+                        }
+                    });
+                }
+
+                document.addEventListener('keydown', function (e) {
+                    if (e.key === 'Escape') {
+                        if (dom.modalOverlay.classList.contains('active')) closeModal();
+                        else if (dom.authOverlay.classList.contains('active')) closeAuthModal();
+                    }
+                });
+
+                document.addEventListener('click', function (e) {
+                    if (state.profileDropdownOpen && !dom.githubLoginBtn.contains(e.target) && !dom.userProfileDropdown.contains(e.target)) {
+                        state.profileDropdownOpen = false;
+                        dom.userProfileDropdown.style.display = 'none';
+                    }
+                });
+            }
+
+            // =============================================
+            // 20. INITIALIZATION
+            // =============================================
+
+            function init() {
+                cacheDom();
+
+                // Core events
+                dom.copyBtn.addEventListener('click', copyToClipboard);
+                dom.refreshBtn.addEventListener('click', handleRefresh);
+                dom.menuBtn.addEventListener('click', toggleNav);
+                dom.githubLoginBtn.addEventListener('click', toggleProfileDropdown);
+                dom.logoutBtn.addEventListener('click', logout);
+                window.addEventListener('scroll', handleScroll, { passive: true });
+
+                dom.inboxRefreshBtn.addEventListener('click', function () {
+                    var icon = dom.inboxRefreshBtn.querySelector('svg');
+                    if (icon) {
+                        icon.style.transition = 'transform 0.5s cubic-bezier(0.4,0,0.2,1)';
+                        icon.style.transform = 'rotate(360deg)';
+                        setTimeout(function () { icon.style.transition = 'none'; icon.style.transform = 'rotate(0deg)'; }, 500);
+                    }
+                    checkInbox();
+                });
+
+                // Setup
+                createNavOverlay();
+                setupScrollReveal();
+                setupFAQ();
+                setupSmoothScroll();
+                setupModals();
+                handleScroll();
+
+                // Restore GitHub user if logged in
+                var storedUser = localStorage.getItem('github_user');
+                if (storedUser) {
+                    try { setLoggedInUI(JSON.parse(storedUser)); } catch (e) { localStorage.removeItem('github_user'); }
+                }
+
+                // Check for GitHub OAuth callback
+                handleGitHubCallback();
+
+                // 🚀 GENERATE FIRST EMAIL — will ALWAYS succeed
+                generateNewEmail();
+            }
+
+            // Start when DOM is ready
+            if (document.readyState === 'loading') {
+                document.addEventListener('DOMContentLoaded', init);
+            } else {
+                init();
+            }
+
+        })();
+
+
+    </script>
+</body>
+
+</html>
