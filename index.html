@@ -1041,6 +1041,125 @@
             opacity: 0.8
         }
 
+        /* --- OTP MODAL STYLES --- */
+        .auth-form-otp-group {
+            display: none;
+            margin-top: 15px;
+            animation: fadeIn 0.3s ease;
+        }
+
+        .auth-form-otp-group.active {
+            display: block;
+        }
+
+        .otp-inputs {
+            display: flex;
+            gap: 10px;
+            justify-content: center;
+            margin: 20px 0;
+            direction: ltr;
+        }
+
+        .otp-input {
+            width: 45px;
+            height: 55px;
+            text-align: center;
+            font-size: 1.5rem;
+            font-weight: 700;
+            border: 2px solid #E2E8F0;
+            border-radius: 12px;
+            background: #F8FAFC;
+            color: #1E293B;
+            transition: all 0.2s ease;
+        }
+
+        .otp-input:focus {
+            border-color: #5CB85C;
+            background: #FFFFFF;
+            box-shadow: 0 0 0 4px rgba(92, 184, 92, 0.1);
+            outline: none;
+        }
+
+        .resend-timer {
+            text-align: center;
+            font-size: 0.85rem;
+            color: #64748B;
+            margin-top: 10px;
+        }
+
+        .resend-link {
+            color: #5CB85C;
+            font-weight: 600;
+            cursor: pointer;
+            text-decoration: none;
+        }
+
+        .resend-link.disabled {
+            color: #CBD5E1;
+            cursor: not-allowed;
+            pointer-events: none;
+        }
+
+        /* Tier labels */
+        .user-tier-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 4px;
+            padding: 4px 10px;
+            border-radius: 100px;
+            font-size: 0.75rem;
+            font-weight: 700;
+            text-transform: uppercase;
+        }
+
+        .user-tier--guest {
+            background: #F1F5F9;
+            color: #64748B;
+        }
+
+        .user-tier--pro {
+            background: #E8F5E8;
+            color: #5CB85C;
+        }
+
+        /* Multi-email supports */
+        .multi-email-nav {
+            display: none;
+            margin-top: 15px;
+            gap: 8px;
+            overflow-x: auto;
+            padding-bottom: 5px;
+        }
+
+        .multi-email-nav.active {
+            display: flex;
+        }
+
+        .email-tab {
+            padding: 8px 16px;
+            background: #F1F5F9;
+            border-radius: 8px;
+            font-size: 0.85rem;
+            white-space: nowrap;
+            cursor: pointer;
+            border: 1px solid transparent;
+            transition: all 0.2s;
+        }
+
+        .email-tab.active {
+            background: #E8F5E8;
+            color: #5CB85C;
+            border-color: #5CB85C;
+        }
+
+        .add-email-tab {
+            padding: 8px 12px;
+            background: #FFFFFF;
+            border: 1px dashed #CBD5E1;
+            border-radius: 8px;
+            cursor: pointer;
+        }
+
         /* Inbox List */
         .inbox-list {
             display: flex;
@@ -2421,20 +2540,44 @@
                     <button class="auth-tab" data-tab="register">إنشاء حساب</button>
                 </div>
 
-                <!-- Tab: Login -->
+                <!-- Tab: Login (OTP Flow) -->
                 <div class="auth-tab-content active" id="authTabLogin">
-                    <div class="auth-form-group">
-                        <label for="loginEmail">البريد الإلكتروني</label>
-                        <input type="email" class="auth-form-input" id="loginEmail" placeholder="example@email.com"
-                            autocomplete="email">
+                    <div id="otpStepEmail">
+                        <div class="auth-form-group">
+                            <label for="loginEmail">البريد الإلكتروني</label>
+                            <input type="email" class="auth-form-input" id="loginEmail" placeholder="example@gmail.com"
+                                autocomplete="email">
+                        </div>
+                        <p style="font-size: 0.8rem; color: #64748B; margin-bottom: 15px;">سنرسل لك كود تحقق على بريدك
+                            لتسجيل الدخول فوراً.</p>
+                        <button class="btn btn--primary auth-form-submit" id="sendOtpBtn">إرسال كود التحقق</button>
                     </div>
-                    <div class="auth-form-group">
-                        <label for="loginPassword">كلمة المرور</label>
-                        <input type="password" class="auth-form-input" id="loginPassword" placeholder="••••••••"
-                            autocomplete="current-password">
+
+                    <div id="otpStepCode" style="display: none;">
+                        <h4 style="text-align: center; margin-bottom: 10px;">أدخل كود التحقق</h4>
+                        <p style="text-align: center; font-size: 0.85rem; color: #64748B;">تم إرسال الكود إلى <strong
+                                id="sentEmailDisplay">...</strong></p>
+
+                        <div class="otp-inputs" id="otpInputContainer">
+                            <input type="text" class="otp-input" maxlength="1" pattern="\d*">
+                            <input type="text" class="otp-input" maxlength="1" pattern="\d*">
+                            <input type="text" class="otp-input" maxlength="1" pattern="\d*">
+                            <input type="text" class="otp-input" maxlength="1" pattern="\d*">
+                            <input type="text" class="otp-input" maxlength="1" pattern="\d*">
+                            <input type="text" class="otp-input" maxlength="1" pattern="\d*">
+                        </div>
+
+                        <div id="loginError" class="auth-form-error">الكود غير صحيح، حاول مرة أخرى.</div>
+
+                        <button class="btn btn--primary auth-form-submit" id="verifyOtpBtn">تأكيد الدخول</button>
+
+                        <div class="resend-timer">
+                            لم يصلك الكود؟ <span class="resend-link disabled" id="resendBtn">إعادة إرسال (<span
+                                    id="otpCountdown">30</span>ث)</span>
+                        </div>
+                        <button class="btn btn--link" style="width: 100%; margin-top: 10px;" id="backToEmailBtn">تغيير
+                            البريد</button>
                     </div>
-                    <div class="auth-form-error" id="loginError"></div>
-                    <button class="btn btn--primary auth-form-submit" id="loginSubmitBtn">تسجيل الدخول</button>
                 </div>
 
                 <!-- Tab: Register -->
@@ -2560,6 +2703,19 @@
                     </svg>
                     <span>تغيير البريد</span>
                 </button>
+
+                <!-- PRO ONLY: Custom Email Name -->
+                <div id="proCustomEmail"
+                    style="display: none; margin-top: 15px; border-top: 1px solid #E2E8F0; padding-top: 15px;">
+                    <p style="font-size: 0.85rem; font-weight: 600; color: #1E293B; margin-bottom: 8px;">✨ اختر اسم بريد
+                        مخصص:</p>
+                    <div style="display: flex; gap: 8px;">
+                        <input type="text" id="customEmailPrefix" placeholder="اسمك مثلاً"
+                            style="flex: 1; padding: 8px 12px; border: 1px solid #CBD5E1; border-radius: 8px; font-size: 0.9rem;">
+                        <button class="btn btn--secondary" id="applyCustomEmail"
+                            style="padding: 8px 16px;">تطبيق</button>
+                    </div>
+                </div>
                 <div class="email-card__footer">
                     <div class="email-card__timer">
                         <svg width="14" height="14" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -3173,9 +3329,14 @@
                 isGenerating: false,
                 errorCount: 0,
                 activeAPI: '', // 'mailtm' or '1secmail' or 'local'
-                // GitHub auth
-                githubUser: null,
-                profileDropdownOpen: false
+                // User Tier
+                user: null, // Logged in user data
+                isPro: false,
+                profileDropdownOpen: false,
+                // OTP state
+                otpEmail: '',
+                otpSent: false,
+                otpTimer: 30
             };
 
             // =============================================
@@ -3240,7 +3401,21 @@
                     registerPassword: document.getElementById('registerPassword'),
                     registerSubmitBtn: document.getElementById('registerSubmitBtn'),
                     registerError: document.getElementById('registerError'),
-                    comparisonSignupBtn: document.getElementById('comparisonSignupBtn')
+                    comparisonSignupBtn: document.getElementById('comparisonSignupBtn'),
+                    // OTP Elements
+                    otpStepEmail: document.getElementById('otpStepEmail'),
+                    otpStepCode: document.getElementById('otpStepCode'),
+                    sendOtpBtn: document.getElementById('sendOtpBtn'),
+                    verifyOtpBtn: document.getElementById('verifyOtpBtn'),
+                    backToEmailBtn: document.getElementById('backToEmailBtn'),
+                    sentEmailDisplay: document.getElementById('sentEmailDisplay'),
+                    otpInputContainer: document.getElementById('otpInputContainer'),
+                    resendBtn: document.getElementById('resendBtn'),
+                    otpCountdown: document.getElementById('otpCountdown'),
+                    // Pro Features
+                    proCustomEmail: document.getElementById('proCustomEmail'),
+                    customEmailPrefix: document.getElementById('customEmailPrefix'),
+                    applyCustomEmail: document.getElementById('applyCustomEmail')
                 };
             }
 
@@ -3389,7 +3564,12 @@
 
                         var domains = await mailtm_getDomains();
                         var activeDomain = domains[0].domain;
-                        var username = generateRandomString(8 + Math.floor(Math.random() * 5));
+
+                        // Use custom prefix if set and user is Pro
+                        var username = (state.isPro && state.customPrefix)
+                            ? state.customPrefix
+                            : generateRandomString(8 + Math.floor(Math.random() * 5));
+
                         var emailAddress = username + '@' + activeDomain;
                         var password = generateRandomString(20) + 'Aa1!';
 
@@ -3942,20 +4122,25 @@
             }
 
             function setLoggedInUI(user) {
-                state.githubUser = user;
-                localStorage.setItem('github_user', JSON.stringify(user));
+                state.user = user;
+                state.isPro = user.isPro || false;
+                localStorage.setItem('tempmail_user', JSON.stringify(user));
 
                 dom.githubLoginBtn.classList.add('logged-in');
-                if (user.avatar_url) {
-                    dom.githubLoginBtn.innerHTML = '<img src="' + escapeHtml(user.avatar_url) + '" alt="' + escapeHtml(user.login || '') + '">';
-                    dom.userAvatar.src = user.avatar_url;
-                } else {
-                    var initial = (user.name || user.login || 'U').charAt(0).toUpperCase();
-                    dom.githubLoginBtn.innerHTML = '<span style="width:32px;height:32px;border-radius:50%;background:#5CB85C;color:white;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:14px">' + initial + '</span>';
-                    dom.userAvatar.style.display = 'none';
+                const avatarContent = user.avatar_url
+                    ? '<img src="' + escapeHtml(user.avatar_url) + '" alt="Avatar">'
+                    : '<span style="width:32px;height:32px;border-radius:50%;background:#5CB85C;color:white;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:14px">' + (user.name || 'U').charAt(0).toUpperCase() + '</span>';
+
+                dom.githubLoginBtn.innerHTML = avatarContent;
+                dom.userName.textContent = user.name || 'User';
+                dom.userHandle.textContent = state.isPro ? 'عضو مميز ✨' : '@' + user.login;
+
+                // Show pro features
+                if (state.isPro) {
+                    dom.proCustomEmail.style.display = 'block';
+                    TIMER_DURATION = 24 * 3600; // 24 hours
+                    updateTimerDisplay();
                 }
-                dom.userName.textContent = user.name || user.login || 'User';
-                dom.userHandle.textContent = '@' + (user.login || 'user');
             }
 
             function logout() {
@@ -4079,10 +4264,6 @@
                 });
             }
 
-            // =============================================
-            // 19. MODAL EVENT HANDLERS
-            // =============================================
-
             function setupModals() {
                 dom.modalCloseBtn.addEventListener('click', closeModal);
                 dom.modalCloseAction.addEventListener('click', closeModal);
@@ -4093,67 +4274,155 @@
                 dom.authOverlay.addEventListener('click', function (e) { if (e.target === dom.authOverlay) closeAuthModal(); });
                 dom.githubAuthBtn.addEventListener('click', initiateGitHubLogin);
 
-                // Auth Tabs
-                dom.authTabs.forEach(function (tab) {
-                    tab.addEventListener('click', function () {
-                        dom.authTabs.forEach(function (t) { t.classList.remove('active'); });
-                        tab.classList.add('active');
-                        var target = tab.getAttribute('data-tab');
-                        dom.authTabLogin.classList.toggle('active', target === 'login');
-                        dom.authTabRegister.classList.toggle('active', target === 'register');
+                // --- OTP FLOW HANDLERS ---
+
+                dom.sendOtpBtn.addEventListener('click', async function () {
+                    var email = dom.loginEmail.value.trim();
+                    if (!email || !email.includes('@')) {
+                        showToast('يرجى إدخال بريد إلكتروني صحيح', 3000, true);
+                        return;
+                    }
+
+                    dom.sendOtpBtn.disabled = true;
+                    dom.sendOtpBtn.textContent = 'جاري الإرسال...';
+
+                    try {
+                        var res = await fetch(GITHUB_WORKER_URL + '/auth/send-otp', {
+                            method: 'POST',
+                            headers: { 'Content-Type': 'application/json' },
+                            body: JSON.stringify({ email: email })
+                        });
+
+                        if (res.ok) {
+                            state.otpEmail = email;
+                            dom.sentEmailDisplay.textContent = email;
+                            dom.otpStepEmail.style.display = 'none';
+                            dom.otpStepCode.style.display = 'block';
+                            startOtpTimer();
+                            showToast('تم إرسال الكود بنجاح! افحص بريدك');
+                            setTimeout(() => dom.otpInputContainer.querySelector('input').focus(), 100);
+                        } else {
+                            throw new Error('Failed to send OTP');
+                        }
+                    } catch (e) {
+                        showToast('فشل إرسال الكود. تأكد من اتصالك بالإنترنت', 4000, true);
+                    } finally {
+                        dom.sendOtpBtn.disabled = false;
+                        dom.sendOtpBtn.textContent = 'إرسال كود التحقق';
+                    }
+                });
+
+                function startOtpTimer() {
+                    state.otpTimer = 30;
+                    dom.resendBtn.classList.add('disabled');
+                    var interval = setInterval(() => {
+                        state.otpTimer--;
+                        dom.otpCountdown.textContent = state.otpTimer;
+                        if (state.otpTimer <= 0) {
+                            clearInterval(interval);
+                            dom.resendBtn.classList.remove('disabled');
+                            dom.resendBtn.innerHTML = 'إعادة إرسال الكود';
+                        }
+                    }, 1000);
+                }
+
+                dom.backToEmailBtn.addEventListener('click', function () {
+                    dom.otpStepCode.style.display = 'none';
+                    dom.otpStepEmail.style.display = 'block';
+                });
+
+                dom.verifyOtpBtn.addEventListener('click', async function () {
+                    var code = Array.from(dom.otpInputContainer.querySelectorAll('input'))
+                        .map(i => i.value).join('');
+
+                    if (code.length < 6) {
+                        dom.loginError.textContent = 'يرجى إدخال الكود كاملاً (6 أرقام)';
+                        dom.loginError.classList.add('show');
+                        return;
+                    }
+
+                    dom.verifyOtpBtn.disabled = true;
+                    dom.verifyOtpBtn.textContent = 'جاري التحقق...';
+
+                    try {
+                        var res = await fetch(GITHUB_WORKER_URL + '/auth/verify-otp', {
+                            method: 'POST',
+                            headers: { 'Content-Type': 'application/json' },
+                            body: JSON.stringify({ email: state.otpEmail, code: code })
+                        });
+
+                        if (res.ok) {
+                            var data = await res.json();
+                            var userData = {
+                                name: data.name || state.otpEmail.split('@')[0],
+                                login: state.otpEmail.split('@')[0],
+                                email: state.otpEmail,
+                                isPro: true
+                            };
+                            setLoggedInUI(userData);
+                            closeAuthModal();
+                            showToast('أهلاً بك يا ' + userData.name + '! 🎉 تم تفعيل المميزات الحصرية');
+                            TIMER_DURATION = 24 * 3600;
+                            resetTimer();
+                        } else {
+                            dom.loginError.textContent = 'الكود غير صحيح أو انتهت صلاحيته';
+                            dom.loginError.classList.add('show');
+                        }
+                    } catch (e) {
+                        showToast('حدث خطأ أثناء التحقق. جرب مرة أخرى', 3000, true);
+                    } finally {
+                        dom.verifyOtpBtn.disabled = false;
+                        dom.verifyOtpBtn.textContent = 'تأكيد الدخول';
+                    }
+                });
+
+                const inputs = dom.otpInputContainer.querySelectorAll('.otp-input');
+                inputs.forEach((input, index) => {
+                    input.addEventListener('input', (e) => {
+                        if (e.target.value.length === 1 && index < inputs.length - 1) {
+                            inputs[index + 1].focus();
+                        }
+                    });
+                    input.addEventListener('keydown', (e) => {
+                        if (e.key === 'Backspace' && !e.target.value && index > 0) {
+                            inputs[index - 1].focus();
+                        }
                     });
                 });
 
-                // Email Login
-                dom.loginSubmitBtn.addEventListener('click', function () {
-                    var email = dom.loginEmail.value.trim();
-                    var pass = dom.loginPassword.value.trim();
-                    dom.loginError.classList.remove('show');
-                    if (!email || !pass) {
-                        dom.loginError.textContent = 'يرجى إدخال البريد الإلكتروني وكلمة المرور';
-                        dom.loginError.classList.add('show');
-                        return;
-                    }
-                    var users = JSON.parse(localStorage.getItem('tempmail_users') || '{}');
-                    if (users[email] && users[email].password === pass) {
-                        var u = { name: users[email].name, login: email.split('@')[0], email: email, avatar_url: '' };
-                        setLoggedInUI(u);
-                        closeAuthModal();
-                        showToast('أهلاً بك مجدداً يا ' + users[email].name + '! 🎉');
-                    } else {
-                        dom.loginError.textContent = 'البريد أو كلمة المرور غير صحيحة';
-                        dom.loginError.classList.add('show');
+                if (dom.comparisonSignupBtn) {
+                    dom.comparisonSignupBtn.addEventListener('click', function () {
+                        if (state.githubUser) {
+                            showToast('أنت مسجل بالفعل! كافة المميزات متاحة لك 🎉');
+                        } else {
+                            showAuthModal();
+                        }
+                    });
+                }
+
+                document.addEventListener('keydown', function (e) {
+                    if (e.key === 'Escape') {
+                        if (dom.modalOverlay.classList.contains('active')) closeModal();
+                        else if (dom.authOverlay.classList.contains('active')) closeAuthModal();
                     }
                 });
 
-                // Email Register
-                dom.registerSubmitBtn.addEventListener('click', function () {
-                    var name = dom.registerName.value.trim();
-                    var email = dom.registerEmail.value.trim();
-                    var pass = dom.registerPassword.value.trim();
-                    dom.registerError.classList.remove('show');
-                    if (!name || !email || !pass) {
-                        dom.registerError.textContent = 'يرجى ملء كافة الحقول';
-                        dom.registerError.classList.add('show');
+                // --- CUSTOM EMAIL PREFIX (PRO) ---
+                dom.applyCustomEmail.addEventListener('click', async function () {
+                    const prefix = dom.customEmailPrefix.value.trim().toLowerCase();
+                    if (!prefix || prefix.length < 3) {
+                        showToast('يجب أن يكون الاسم 3 حروف على الأقل', 3000, true);
                         return;
                     }
-                    if (pass.length < 6) {
-                        dom.registerError.textContent = 'يجب أن تتكون كلمة المرور من 6 أحرف على الأقل';
-                        dom.registerError.classList.add('show');
+                    if (!/^[a-z0-9]+$/.test(prefix)) {
+                        showToast('الاسم يجب أن يحتوي على حروف وأرقام إنجليزية فقط', 3000, true);
                         return;
                     }
-                    var users = JSON.parse(localStorage.getItem('tempmail_users') || '{}');
-                    if (users[email]) {
-                        dom.registerError.textContent = 'هذا البريد مسجل مسبقاً - حاول تسجيل الدخول';
-                        dom.registerError.classList.add('show');
-                        return;
-                    }
-                    users[email] = { name: name, password: pass };
-                    localStorage.setItem('tempmail_users', JSON.stringify(users));
-                    var u = { name: name, login: email.split('@')[0], email: email, avatar_url: '' };
-                    setLoggedInUI(u);
-                    closeAuthModal();
-                    showToast('تم إنشاء حسابك بنجاح يا ' + name + '! 🎉');
+
+                    // Logic to regenerate with specific prefix
+                    state.customPrefix = prefix;
+                    showToast('جاري تطبيق الاسم المخصص...');
+                    handleRefresh();
                 });
 
                 // Comparison CTA
